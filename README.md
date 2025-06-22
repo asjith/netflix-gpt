@@ -1,4 +1,7 @@
-NETFLIX-GPT
+# NETFLIX-GPT
 
-1. create-react-app
-2. tailwind
+- create-react-app
+- tailwind
+- header
+- login form
+- Sign Up form
