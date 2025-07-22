@@ -14,3 +14,4 @@
 - redux store created
 - Implemented Sign Out
 - Update Profile
+- Bugfix : if user is not logged in, then redirect /browse to login page and vice versa
