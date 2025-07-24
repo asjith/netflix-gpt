@@ -11,7 +11,7 @@ const Header = () => {
   const user = useSelector((store) => store.user);
   console.log("inside Header");
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log("inside onauthstatechanged");
       if (user) {
         // User is signed in
@@ -24,6 +24,8 @@ const Header = () => {
         navigate("/");
       }
     });
+
+    return () => unsubscribe();
   }, []);
 
   const handleSignOut = () => {
