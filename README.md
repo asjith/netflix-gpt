@@ -20,3 +20,4 @@
 - Registered in TMDB and received access token
 - Get data from TMDB Now Playing Movies List API
 - results from TMDB movie API call were stored in redux store
+- custom hook for seperation of concern
