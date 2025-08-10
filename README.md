@@ -22,4 +22,4 @@
 - results from TMDB movie API call were stored in redux store
 - custom hook for seperation of concern
 - Building Browse page
-  - video title
+  - video title with movie logo API
