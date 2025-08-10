@@ -23,3 +23,4 @@
 - custom hook for seperation of concern
 - Building Browse page
   - video title with movie logo API
+  - movie trailer as background

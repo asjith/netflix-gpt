@@ -17,7 +17,6 @@ const useVideoTitleLogo = (movieId) => {
     );
     const json = await data.json();
 
-    console.log(json);
     const image =
       MOVIE_LOGO_IMAGE_BASE_URL +
       MOVIE_LOGO_IMAGE_SIZE +
