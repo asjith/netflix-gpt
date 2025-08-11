@@ -25,3 +25,4 @@
   - video title with movie logo API
   - movie trailer as background
   - add styling
+  - movie trailer autoplay
