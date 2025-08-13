@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import {
   MOVIE_API_OPTIONS,
-  MOVIE_LOGO_IMAGE_BASE_URL,
+  MOVIE_IMAGE_BASE_URL,
   MOVIE_LOGO_IMAGE_SIZE,
 } from "../utils/constants";
 import { addVideoTitleLogo } from "../utils/moviesSlice";
@@ -18,9 +18,7 @@ const useVideoTitleLogo = (movieId) => {
     const json = await data.json();
 
     const image =
-      MOVIE_LOGO_IMAGE_BASE_URL +
-      MOVIE_LOGO_IMAGE_SIZE +
-      json?.logos[0]?.file_path;
+      MOVIE_IMAGE_BASE_URL + MOVIE_LOGO_IMAGE_SIZE + json?.logos[0]?.file_path;
 
     dispatch(addVideoTitleLogo(image));
   };

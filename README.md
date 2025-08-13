@@ -22,7 +22,10 @@
 - results from TMDB movie API call were stored in redux store
 - custom hook for seperation of concern
 - Building Browse page
-  - video title with movie logo API
-  - movie trailer as background
-  - add styling
-  - movie trailer autoplay
+  - Building the Main Container
+    - video title with movie logo API
+    - movie trailer as background
+    - add styling
+    - movie trailer autoplay
+  - Building the Secondary Container
+    - Now Playing list
