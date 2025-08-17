@@ -14,7 +14,7 @@ const VideoBackground = (props) => {
   return (
     <div>
       <iframe
-        className="w-screen aspect-video"
+        className="w-auto aspect-video "
         src={
           "https://www.youtube.com/embed/" +
           movieTrailer?.key +

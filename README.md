@@ -27,5 +27,7 @@
     - movie trailer as background
     - add styling
     - movie trailer autoplay
+    - adjusted width of elements(video background, title, header) to avoid horizontal scrolling
   - Building the Secondary Container
     - Now Playing list
+    - used flex to design movie list carousel

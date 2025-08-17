@@ -11,7 +11,7 @@ const VideoTitle = (props) => {
   useVideoTitleLogo(movieId);
 
   return (
-    <div className="absolute bottom-0 px-8 pt-52 bg-gradient-to-r from-black w-screen aspect-video">
+    <div className="absolute bottom-0 px-8 pt-52 bg-gradient-to-r from-black w-auto aspect-video">
       {movieLogo ? (
         <img src={movieLogo}></img>
       ) : (
