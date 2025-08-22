@@ -6,9 +6,10 @@ import {
 const MovieCard = (props) => {
   const { poster } = props;
   return (
-    <div className="shrink-0 movie-card">
-      <img src={MOVIE_IMAGE_BASE_URL + MOVIE_CARD_IMAGE_SIZE + poster} />
-    </div>
+    <img
+      className="movie"
+      src={MOVIE_IMAGE_BASE_URL + MOVIE_CARD_IMAGE_SIZE + poster}
+    />
   );
 };
 

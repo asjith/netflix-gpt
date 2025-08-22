@@ -30,4 +30,9 @@
     - adjusted width of elements(video background, title, header) to avoid horizontal scrolling
   - Building the Secondary Container
     - Now Playing list
-    - used flex to design movie list carousel
+    - used tailwind flex to design movie list carousel(before)
+    - used css to design movie list carousel(now)
+      - movies arrangement and transform
+      - handled right button to move the list to right
+      - showing progress bar
+      - made it responsive

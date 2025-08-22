@@ -6,7 +6,7 @@ const SecondaryContainer = () => {
   if (!movies) return;
   console.log(movies);
   return (
-    <div className="pl-8 my-8">
+    <div className="">
       <MovieList title="Now Playing" movies={movies} />
     </div>
   );
