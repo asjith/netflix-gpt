@@ -34,6 +34,7 @@
     - used css to design movie list carousel(now)
       - movies arrangement and transform
       - handled right button to move the list to right
+      - infinite carousel for the right movement
       - showing progress bar
       - made it responsive
       - handled left button to move the list to left

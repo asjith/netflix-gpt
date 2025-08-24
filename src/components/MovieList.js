@@ -5,6 +5,7 @@ const MovieList = (props) => {
   const { title, movies } = props;
   const [moviePerSlider, setMoviePerSlider] = useState(3);
   const [noOfMoviesMoved, setNoOfMoviesMoved] = useState(0); //no of movies already moved + to be moved
+  const [transitionRequired, setTransitionRequired] = useState(true);
   const movieContainerInfo = useRef(null);
 
   const calcNoOfMoviesPerSlide = () => {
@@ -43,8 +44,14 @@ const MovieList = (props) => {
 
     nowMoviesMove = noOfMoviesMoved + moviePerSlider; // represents total movies to be moved now
     if (nowMoviesMove === movies.length) {
-      //reached end
-      nowMoviesMove = 0;
+      //reached end, so go to clone part
+      setNoOfMoviesMoved(nowMoviesMove);
+      setTimeout(() => {
+        setTransitionRequired(false); //set transition to none, so movement towards left to go all the way back to starting is not shown
+        setNoOfMoviesMoved(0); //go to start
+        setTimeout(() => setTransitionRequired(true), 100); //enable transition, after 100 ms for future
+      }, 700);
+      return;
     } else if (nowMoviesMove + moviePerSlider > movies.length) {
       //there are movies left on right, which are not equal to no of movies per slide, so adjust
       nowMoviesMove = noOfMoviesMoved + (movies.length - nowMoviesMove);
@@ -87,7 +94,9 @@ const MovieList = (props) => {
           &#x2039;
         </button>
         <div
-          className="movie-slider"
+          className={`movie-slider ${
+            transitionRequired ? "do-transition" : "no-transition"
+          }`}
           style={{
             "--transform": (noOfMoviesMoved * 100) / moviePerSlider,
           }}
@@ -95,6 +104,12 @@ const MovieList = (props) => {
           {movies.map((movie) => (
             <MovieCard key={movie.id} poster={movie.poster_path} />
           ))}
+          {
+            //cloning
+            movies.slice(0, moviePerSlider).map((movie) => (
+              <MovieCard key={`clone-${movie.id}`} poster={movie.poster_path} />
+            ))
+          }
         </div>
         <button className="handle right-handle" onClick={handleRightButton}>
           &#x203A;
