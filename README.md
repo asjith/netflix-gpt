@@ -36,3 +36,4 @@
       - handled right button to move the list to right
       - showing progress bar
       - made it responsive
+      - handled left button to move the list to left

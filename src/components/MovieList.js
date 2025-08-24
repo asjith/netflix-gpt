@@ -25,7 +25,17 @@ const MovieList = (props) => {
   }, []);
 
   const handleLeftButton = (e) => {
-    // setSliderIndex(sliderIndex - 1);
+    let nowMoviesMove = 0;
+
+    nowMoviesMove = noOfMoviesMoved - moviePerSlider; // represents total movies to be on left side of the screen
+    if (nowMoviesMove === -moviePerSlider) {
+      //reached start, so go to end
+      nowMoviesMove = movies.length - moviePerSlider;
+    } else if (nowMoviesMove < 0) {
+      //there are movies left on left side of screen, which are not equal to no of movies per slide, so set to start
+      nowMoviesMove = 0;
+    }
+    setNoOfMoviesMoved(nowMoviesMove);
   };
 
   const handleRightButton = () => {
@@ -50,7 +60,6 @@ const MovieList = (props) => {
           {Array(3)
             .fill()
             .map((_, i) => {
-              console.log(noOfMoviesMoved);
               if (
                 (i === 0 && noOfMoviesMoved === 0) ||
                 (i === 2 &&
