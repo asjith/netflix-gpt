@@ -43,6 +43,15 @@
     border-radius: 0.5rem;
 }
 
+.not-visible{
+    visibility: hidden;
+}
+
+.movie-list-start-margin{
+    width: var(--slider-padding);
+    margin: 0.25rem 0.25rem 0.25rem 0;
+}
+
 .handle{
     width: var(--slider-padding);
     background-color: black;
