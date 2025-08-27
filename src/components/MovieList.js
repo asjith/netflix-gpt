@@ -8,6 +8,7 @@ const MovieList = (props) => {
   const [transitionRequired, setTransitionRequired] = useState(true);
   const [startToMove, setStartToMove] = useState(false);
   const movieContainerInfo = useRef(null);
+  const prevMoviePerSlider = useRef(moviePerSlider);
 
   const calcNoOfMoviesPerSlide = () => {
     //get value of variable --movie-per-slider used in css. This varies with screen size.
@@ -15,14 +16,7 @@ const MovieList = (props) => {
     const strToIntMoviePerSlide = parseInt(
       computedStyle.getPropertyValue("--movie-per-slider")
     );
-
-    //set moviePerSlider. noOfMoviesMoved depends on moviePreSlider, so set each time it changes
-    setMoviePerSlider((prevMoviePerSlider) => {
-      setNoOfMoviesMoved((prevNoOfMoviesMoved) => {
-        return prevNoOfMoviesMoved - prevMoviePerSlider + strToIntMoviePerSlide;
-      });
-      return strToIntMoviePerSlide;
-    });
+    setMoviePerSlider(strToIntMoviePerSlide);
   };
 
   useEffect(() => {
@@ -32,6 +26,15 @@ const MovieList = (props) => {
 
     return () => window.removeEventListener("resize", calcNoOfMoviesPerSlide);
   }, []);
+
+  //noOfMoviesMoved depends on moviePreSlider, so set each time it changes
+  useEffect(() => {
+    if (prevMoviePerSlider.current !== moviePerSlider) {
+      const prevValue = prevMoviePerSlider.current;
+      setNoOfMoviesMoved((prev) => prev - prevValue + moviePerSlider);
+    }
+    prevMoviePerSlider.current = moviePerSlider;
+  }, [moviePerSlider]);
 
   const handleLeftButton = (e) => {
     let nowMoviesMove = 0;
@@ -44,7 +47,7 @@ const MovieList = (props) => {
         setTransitionRequired(false); //set transition to none, so movement towards right to go all the way back to end of the actual movie list, is not shown
         setNoOfMoviesMoved(movies.length); //go to end
         setTimeout(() => setTransitionRequired(true), 100); //enable transition, after 100 ms for future
-      }, 700);
+      }, 500);
       return;
     } else if (nowMoviesMove < moviePerSlider) {
       //almost at the end yet not reached, there are remaining movies on left side, which are not equal to no of movies per slide, so adjust
@@ -67,7 +70,7 @@ const MovieList = (props) => {
         setTransitionRequired(false); //set transition to none, so movement towards left to go all the way back to starting of the movie list, is not shown
         setNoOfMoviesMoved(moviePerSlider); //go to start
         setTimeout(() => setTransitionRequired(true), 100); //enable transition, after 100 ms for future
-      }, 700);
+      }, 500);
       return;
     } else if (nowMoviesMove > movies.length) {
       //there are remaining movies on right, which are not equal to no of movies per slide, so adjust

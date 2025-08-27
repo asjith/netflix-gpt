@@ -28,7 +28,7 @@
 }
 
 .movie-slider.do-transition {
-    transition: transform 700ms ease-in-out;
+    transition: transform 500ms ease-out;
 }
 
 .movie-slider.no-transition {
