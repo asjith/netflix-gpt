@@ -1,12 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import MovieCard from "./MovieCard";
 
+const TRANSITION_DELAY = 500;
+const TRANSITION_RESET_DELAY = 100;
+const PROGRESS_BAR_SEGMENTS = 3;
+
 const MovieList = (props) => {
   const { title, movies } = props;
+
   const [moviePerSlider, setMoviePerSlider] = useState(3);
   const [noOfMoviesMoved, setNoOfMoviesMoved] = useState(3); //no of movies already moved to left
-  const [transitionRequired, setTransitionRequired] = useState(true);
-  const [startToMove, setStartToMove] = useState(false);
+  const [hasTransition, setHasTransition] = useState(true);
+  const [hasStartedMoving, setHasStartedMoving] = useState(false);
+
   const movieContainerInfo = useRef(null);
   const prevMoviePerSlider = useRef(moviePerSlider);
 
@@ -36,6 +42,14 @@ const MovieList = (props) => {
     prevMoviePerSlider.current = moviePerSlider;
   }, [moviePerSlider]);
 
+  const resetToPosition = (moviesMoved) => {
+    setTimeout(() => {
+      setHasTransition(false); //set transition to none, so movement is not shown
+      setNoOfMoviesMoved(moviesMoved); //go to end if left button clicked or start if right button
+      setTimeout(() => setHasTransition(true), TRANSITION_RESET_DELAY); //enable transition, after 100 ms for future
+    }, TRANSITION_DELAY);
+  };
+
   const handleLeftButton = (e) => {
     let nowMoviesMove = 0;
 
@@ -43,73 +57,68 @@ const MovieList = (props) => {
     if (nowMoviesMove === 0) {
       //reached start, so go to clone part
       setNoOfMoviesMoved(nowMoviesMove); //shows left side clone part
-      setTimeout(() => {
-        setTransitionRequired(false); //set transition to none, so movement towards right to go all the way back to end of the actual movie list, is not shown
-        setNoOfMoviesMoved(movies.length); //go to end
-        setTimeout(() => setTransitionRequired(true), 100); //enable transition, after 100 ms for future
-      }, 500);
-      return;
+      resetToPosition(movies.length);
     } else if (nowMoviesMove < moviePerSlider) {
       //almost at the end yet not reached, there are remaining movies on left side, which are not equal to no of movies per slide, so adjust
       nowMoviesMove = moviePerSlider;
+      setNoOfMoviesMoved(nowMoviesMove);
+    } else {
+      setNoOfMoviesMoved(nowMoviesMove);
     }
-
-    setNoOfMoviesMoved(nowMoviesMove);
   };
 
   const handleRightButton = () => {
     let nowMoviesMove = 0;
 
-    if (startToMove === false) setStartToMove(true); //indicate first click on movement button
+    if (hasStartedMoving === false) setHasStartedMoving(true); //indicate first click on movement button
 
     nowMoviesMove = noOfMoviesMoved + moviePerSlider; // represents total movies to be moved now
     if (noOfMoviesMoved === movies.length) {
       //reached end, so go to clone part
       setNoOfMoviesMoved(nowMoviesMove); //show right side clown part
-      setTimeout(() => {
-        setTransitionRequired(false); //set transition to none, so movement towards left to go all the way back to starting of the movie list, is not shown
-        setNoOfMoviesMoved(moviePerSlider); //go to start
-        setTimeout(() => setTransitionRequired(true), 100); //enable transition, after 100 ms for future
-      }, 500);
-      return;
+      resetToPosition(moviePerSlider);
     } else if (nowMoviesMove > movies.length) {
       //there are remaining movies on right, which are not equal to no of movies per slide, so adjust
       nowMoviesMove = movies.length;
+      setNoOfMoviesMoved(nowMoviesMove);
+    } else {
+      setNoOfMoviesMoved(nowMoviesMove);
     }
-    setNoOfMoviesMoved(nowMoviesMove);
+  };
+
+  const getProgressBar = () => {
+    return Array(PROGRESS_BAR_SEGMENTS)
+      .fill()
+      .map((_, i) => {
+        if (
+          (i === 0 && noOfMoviesMoved === moviePerSlider) ||
+          (i === 2 && noOfMoviesMoved === movies.length) ||
+          (i === 1 &&
+            noOfMoviesMoved > moviePerSlider &&
+            noOfMoviesMoved < movies.length)
+        )
+          return (
+            <div
+              key={i}
+              className="progress"
+              style={{
+                backgroundColor: "black",
+                transition: "background-color 1000ms ease-in",
+              }}
+            ></div>
+          );
+        else return <div key={i} className="progress"></div>;
+      });
   };
 
   return (
     <div>
       <div className="movie-list-header">
         <h1 className="title text-xl font-bold">{title}</h1>
-        <div className="progress-bar">
-          {Array(3)
-            .fill()
-            .map((_, i) => {
-              if (
-                (i === 0 && noOfMoviesMoved === moviePerSlider) ||
-                (i === 2 && noOfMoviesMoved === movies.length) ||
-                (i === 1 &&
-                  noOfMoviesMoved > moviePerSlider &&
-                  noOfMoviesMoved < movies.length)
-              )
-                return (
-                  <div
-                    key={i}
-                    className="progress"
-                    style={{
-                      backgroundColor: "black",
-                      transition: "background-color 1000ms ease-in",
-                    }}
-                  ></div>
-                );
-              else return <div key={i} className="progress"></div>;
-            })}
-        </div>
+        <div className="progress-bar">{getProgressBar()}</div>
       </div>
       <div className="movie-container" ref={movieContainerInfo}>
-        {startToMove ? (
+        {hasStartedMoving ? (
           <button className="handle left-handle" onClick={handleLeftButton}>
             &#x2039;
           </button>
@@ -118,7 +127,7 @@ const MovieList = (props) => {
         )}
         <div
           className={`movie-slider ${
-            transitionRequired ? "do-transition" : "no-transition"
+            hasTransition ? "do-transition" : "no-transition"
           }`}
           style={{
             "--transform": (noOfMoviesMoved * 100) / moviePerSlider,
@@ -131,7 +140,7 @@ const MovieList = (props) => {
               .map((movie) => (
                 <MovieCard
                   key={`clone-${movie.id}`}
-                  visiblity={startToMove ? true : false}
+                  visiblity={hasStartedMoving ? true : false}
                   poster={movie.poster_path}
                 />
               ))
