@@ -10,6 +10,7 @@ import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { LOGIN_BACKGROUND } from "../utils/constants";
+import useBreakpoints from "../hooks/useBreakpoints";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -78,17 +79,23 @@ const Login = () => {
     }
   };
 
+  const { isMobile } = useBreakpoints();
+
   return (
     <div className="relative">
       <Header />
-      <div className="absolute z-0 w-screen">
-        <img
-          className="brightness-50"
-          src={LOGIN_BACKGROUND}
-          alt="background"
-        />
-      </div>
-      <form className="absolute z-10 bg-black w-1/3 mx-auto my-32 right-0 left-0 text-white p-10 bg-opacity-75 rounded-md">
+      <div className="absolute z-0 h-screen w-full bg-black"></div>
+      {!isMobile && (
+        <div className="absolute z-0 w-[100rem]">
+          <img
+            className="brightness-50"
+            src={LOGIN_BACKGROUND}
+            alt="background"
+          />
+        </div>
+      )}
+
+      <form className="absolute z-20 bg-black h-auto w-full px-[3rem] py-[2rem] my-[10%] text-white  bg-opacity-0 right-0 left-0 md:bg-opacity-75 md:rounded-md md:w-[28rem] md:mx-auto">
         <h1 className="my-5 font-bold text-3xl">
           {isSignIn ? "Sign In" : "Sign Up"}
         </h1>

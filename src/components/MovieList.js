@@ -114,7 +114,7 @@ const MovieList = (props) => {
   return (
     <div>
       <div className="movie-list-header">
-        <h1 className="title text-xl font-bold">{title}</h1>
+        <h1 className="title font-bold md:text-lg lg:text-xl">{title}</h1>
         <div className="progress-bar">{getProgressBar()}</div>
       </div>
       <div className="movie-container" ref={movieContainerInfo}>

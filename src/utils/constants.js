@@ -1,5 +1,5 @@
 export const LOGO =
-  "https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/500px-Netflix_2015_logo.svg.png";
 
 export const USER_ICON =
   "https://occ-0-1946-2186.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229";
@@ -14,6 +14,13 @@ export const MOVIE_API_OPTIONS = {
     Authorization:
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZmI1MjViYjUwNzg3YjJkOGMwNDkwZWQ3NWEzYmY4OSIsIm5iZiI6MTc1MzUxMDg1My41MDU5OTk4LCJzdWIiOiI2ODg0NzNjNWQ5ZGExOGU1MTY4YTY5NDQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.gZV7cAg3heypzMdQmStrefebl3riz2sBeNUxFQzcwhE",
   },
+};
+
+export const BREAKPOINTS = {
+  mobile: 0,
+  tablet: 768,
+  desktop: 1024,
+  largeDesktop: 1440,
 };
 
 export const MOVIE_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";

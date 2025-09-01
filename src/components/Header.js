@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO, USER_ICON } from "../utils/constants";
+import useBreakpoints from "../hooks/useBreakpoints";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -38,15 +39,24 @@ const Header = () => {
       });
   };
 
+  const { isTablet, isDesktop } = useBreakpoints();
+
   return (
-    <div className="absolute z-10 px-8 py-2 w-full flex justify-between bg-gradient-to-b from-black/100">
-      <img className=" w-52" src={LOGO} alt="logo" />
+    <div className="absolute z-10 px-[3rem] py-4 w-full flex justify-between bg-gradient-to-b from-black/100">
+      <div className="flex items-center">
+        <img className="w-[20%]" src={LOGO} alt="logo" />
+      </div>
+
       {user && (
-        <div className="flex h-1/2 my-auto">
-          <p className="p-2 font-bold text-white">Hello {user.displayName}!</p>
+        <div className="flex items-center shrink-0">
+          {(isTablet || isDesktop) && (
+            <p className="p-2 font-bold text-white">
+              Hello {user.displayName}!
+            </p>
+          )}
           <img className="mx-2 rounded-sm" src={USER_ICON} alt="user-icon" />
           <button
-            className="border bg-red-700 text-white font-bold rounded-sm p-2"
+            className="border bg-red-700 text-white font-medium rounded-sm px-2 py-1.5 self-stretch text-xs sm:text-sm md:self-center"
             onClick={handleSignOut}
           >
             Sign Out
