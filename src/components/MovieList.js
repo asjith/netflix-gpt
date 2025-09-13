@@ -102,7 +102,7 @@ const MovieList = (props) => {
               key={i}
               className="progress"
               style={{
-                backgroundColor: "black",
+                backgroundColor: "white",
                 transition: "background-color 1000ms ease-in",
               }}
             ></div>
@@ -113,8 +113,10 @@ const MovieList = (props) => {
 
   return (
     <div>
-      <div className="movie-list-header">
-        <h1 className="title font-bold md:text-lg lg:text-xl">{title}</h1>
+      <div className="movie-list-header pt-[3%] pb-1">
+        <h1 className="title font-bold text-white text-xs sm:text-sm md:text-lg lg:text-xl">
+          {title}
+        </h1>
         <div className="progress-bar">{getProgressBar()}</div>
       </div>
       <div className="movie-container" ref={movieContainerInfo}>

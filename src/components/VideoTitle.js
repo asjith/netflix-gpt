@@ -23,7 +23,7 @@ const VideoTitle = (props) => {
       </div>
 
       {isDesktop && <p className="text-sm text-white my-2 w-1/2">{overview}</p>}
-      <div className=" flex flex-grow-0 my-6 ">
+      <div className=" flex flex-grow-0 my-[2%] ">
         <button className="py-1 px-4 bg-white text-black  rounded-md font-bold text-xs sm:text-sm lg:text-lg hover:bg-opacity-80">
           <div className="flex items-center shrink-0">
             <img className="size-3 mr-2 lg:size-5" src={play} />

@@ -17,8 +17,14 @@ const useVideoTitleLogo = (movieId) => {
     );
     const json = await data.json();
 
+    //filtering english logo
+    const englishLogoFilePaths = json?.logos.filter(
+      (logo) => logo.iso_639_1 === "en"
+    );
     const image =
-      MOVIE_IMAGE_BASE_URL + MOVIE_LOGO_IMAGE_SIZE + json?.logos[0]?.file_path;
+      MOVIE_IMAGE_BASE_URL +
+      MOVIE_LOGO_IMAGE_SIZE +
+      englishLogoFilePaths[0]?.file_path;
 
     dispatch(addVideoTitleLogo(image));
   };
