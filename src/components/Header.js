@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO, USER_ICON } from "../utils/constants";
 import useBreakpoints from "../hooks/useBreakpoints";
+import search from "../icons/search.png";
+import { toggleGptSearch } from "../utils/gptSearchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -39,6 +41,10 @@ const Header = () => {
       });
   };
 
+  const handleGptSearch = () => {
+    dispatch(toggleGptSearch());
+  };
+
   const { isTablet, isDesktop } = useBreakpoints();
 
   return (
@@ -54,9 +60,12 @@ const Header = () => {
               Hello {user.displayName}!
             </p>
           )}
+          <button onClick={handleGptSearch}>
+            <img className="mx-2" src={search} />
+          </button>
           <img className="mx-2 rounded-sm" src={USER_ICON} alt="user-icon" />
           <button
-            className="border bg-red-700 text-white font-medium rounded-sm px-2 py-1.5 self-stretch text-xs sm:text-sm md:self-center"
+            className="border border-red-700 bg-red-700 text-white font-medium rounded-sm px-2 py-1.5 self-stretch text-xs sm:text-sm md:self-center"
             onClick={handleSignOut}
           >
             Sign Out

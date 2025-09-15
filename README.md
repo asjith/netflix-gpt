@@ -36,3 +36,6 @@
       - showing progress bar
       - made it responsive
       - implemented infinite loop carousel
+- Building Gpt Search
+  - Gpt Search button in header in Browse page which leads to Gpt search page
+  - designed Gpt search bar
