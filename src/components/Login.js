@@ -82,20 +82,20 @@ const Login = () => {
   const { isMobile } = useBreakpoints();
 
   return (
-    <div className="relative">
+    <div className="relative h-screen">
       <Header />
-      <div className="absolute z-0 h-screen w-full bg-black"></div>
+      <div className="absolute z-0  h-full w-full bg-black"></div>
       {!isMobile && (
-        <div className="absolute z-0 w-[100rem]">
+        <div className="absolute z-0  h-full w-full">
           <img
-            className="brightness-50"
+            className="brightness-50 object-cover h-full w-full"
             src={LOGIN_BACKGROUND}
             alt="background"
           />
         </div>
       )}
 
-      <form className="absolute z-20 bg-black h-auto w-full px-[3rem] py-[2rem] my-[10%] text-white  bg-opacity-0 right-0 left-0 md:bg-opacity-75 md:rounded-md md:w-[28rem] md:mx-auto">
+      <form className="absolute z-20 bg-black h-auto w-full px-[3rem] py-[2rem] my-[9%] text-white  bg-opacity-0 right-0 left-0 md:bg-opacity-75 md:rounded-md md:w-[28rem] md:mx-auto">
         <h1 className="my-5 font-bold text-3xl">
           {isSignIn ? "Sign In" : "Sign Up"}
         </h1>
