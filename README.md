@@ -39,3 +39,4 @@
 - Building Gpt Search
   - Gpt Search button in header in Browse page which leads to Gpt search page
   - designed Gpt search bar
+  - made gpt search bar texts multilingual

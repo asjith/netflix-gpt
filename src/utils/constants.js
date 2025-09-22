@@ -26,3 +26,9 @@ export const BREAKPOINTS = {
 export const MOVIE_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
 export const MOVIE_LOGO_IMAGE_SIZE = "w300";
 export const MOVIE_CARD_IMAGE_SIZE = "w300";
+
+export const SUPPORTED_LANGUAGE = [
+  { id: "en", name: "English" },
+  { id: "hindi", name: "Hindi" },
+  { id: "malayalam", name: "Malayalam" },
+];
