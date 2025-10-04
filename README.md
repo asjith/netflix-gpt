@@ -40,3 +40,5 @@
   - Gpt Search button in header in Browse page which leads to Gpt search page
   - designed Gpt search bar
   - made gpt search bar texts multilingual
+  - created openai api key and installed openai library
+  - used openai library to get movie list for the query submitted
