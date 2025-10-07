@@ -2,12 +2,30 @@ import { useRef } from "react";
 import language from "../utils/languageConstants";
 import { useSelector } from "react-redux";
 import openai from "../utils/openai";
+import { MOVIE_API_OPTIONS } from "../utils/constants";
 
 const GptSearchBar = () => {
   const searchText = useRef();
   const languageName = useSelector((store) => store.config.language);
 
+  const searchMovieTMDB = async (movie) => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      MOVIE_API_OPTIONS
+    );
+    const json = await data.json();
+
+    const movieData = json.results.filter((item) => {
+      if (item.title == movie) return item;
+    });
+
+    return movieData;
+  };
+
   const handleGptSearchClick = async () => {
+    console.log("searching...");
     const response = await openai.responses.create({
       model: "gpt-5-mini",
       instructions:
@@ -15,7 +33,7 @@ const GptSearchBar = () => {
       input:
         "Suggest movies for query " +
         searchText.current.value +
-        ". Recommend exactly 10 movies seperated by comma. Example: Avesham, War, Dhoom, Falimy, Notebook." +
+        ". Recommend exactly 5 movies seperated by comma. Example: Avesham, War, Dhoom, Falimy, Notebook." +
         "If a person's name spotted in the query, then give results of movies he or she has appeared on." +
         "Like 'basil joseph movies', then display movies where basil joseph has acted on." +
         "if mentioned basil joseph directed movies, then display movies directed by him." +
@@ -23,26 +41,32 @@ const GptSearchBar = () => {
         "Always fetch latest, recent movies unless mentioned old, retro." +
         "Always display movies list. Never ask any question as response. Trust your intuition." +
         "To summarise:" +
-        "You are a movie recommendation system. Always output exactly 10 movie titles separated by commas — nothing else." +
+        "You are a movie recommendation system. Always output exactly 5 movie titles separated by commas — nothing else." +
         "Rules:" +
         "1. The user will enter a text query describing what kind of movies they want (e.g., 'Indian retro movies', 'Basil Joseph movies', 'romantic Malayalam films', etc.)." +
         "2. If the query includes a person's name:" +
         "- If the query mentions 'directed' or 'director', return movies that the person has directed." +
         "- Otherwise, return movies the person has acted in or appeared in (even cameo roles)." +
-        "- If fewer than 10 movies are available, fill the remaining slots with movies similar in genre, language, or style." +
+        "- If fewer than 5 movies are available, fill the remaining slots with movies similar in genre, language, or style." +
         "3. If the query includes both a person and a genre, prioritize that combination (e.g., 'Nivin Pauly action movies' → Nivin Pauly’s action movies)." +
         "4. If no person is mentioned, treat the query as a general movie search based on genre, language, theme, or time period." +
         "5. Always prefer recent and popular titles from the last few years unless the query explicitly mentions 'old', 'classic', or 'retro'." +
         "6. Never ask questions or seek clarification. Never include explanations or text outside the movie list." +
-        "7. The final output must be **only** a list of 10 movie titles separated by commas, e.g.:Aavesham, War, Dhoom, Falimy, Notebook, ...",
+        "7. The final output must be **only** a list of 5 movie titles separated by commas, e.g.:Aavesham, War, Dhoom, Falimy, Notebook, ...",
     });
 
     const gptMovies = response?.output_text?.split(", ");
 
     if (!gptMovies || gptMovies.length < 4) {
-      console.log("sorry, could not find.", response.output_text);
+      console.log("Sorry, could not find.", response.output_text);
     } else {
-      console.log(gptMovies);
+      const moviePromiseArray = gptMovies.map((movie) => {
+        return searchMovieTMDB(movie);
+      });
+
+      const gptMoviesData = await Promise.all(moviePromiseArray);
+
+      console.log(gptMoviesData);
     }
   };
 
