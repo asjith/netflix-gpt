@@ -1,28 +1,16 @@
 import { useRef } from "react";
 import language from "../utils/languageConstants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
 import { MOVIE_API_OPTIONS } from "../utils/constants";
+import useSearchMovies from "../hooks/useSearchMovies";
+import { addMovies } from "../utils/gptSearchSlice";
 
 const GptSearchBar = () => {
   const searchText = useRef();
   const languageName = useSelector((store) => store.config.language);
-
-  const searchMovieTMDB = async (movie) => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" +
-        movie +
-        "&include_adult=false&language=en-US&page=1",
-      MOVIE_API_OPTIONS
-    );
-    const json = await data.json();
-
-    const movieData = json.results.filter((item) => {
-      if (item.title == movie) return item;
-    });
-
-    return movieData;
-  };
+  const searchMovieTMDB = useSearchMovies();
+  const dispatch = useDispatch();
 
   const handleGptSearchClick = async () => {
     console.log("searching...");
@@ -55,18 +43,19 @@ const GptSearchBar = () => {
         "7. The final output must be **only** a list of 5 movie titles separated by commas, e.g.:Aavesham, War, Dhoom, Falimy, Notebook, ...",
     });
 
-    const gptMovies = response?.output_text?.split(", ");
+    const gptMovieNames = response?.output_text?.split(", ");
 
-    if (!gptMovies || gptMovies.length < 4) {
+    if (!gptMovieNames || gptMovieNames.length <= 3) {
       console.log("Sorry, could not find.", response.output_text);
     } else {
-      const moviePromiseArray = gptMovies.map((movie) => {
-        return searchMovieTMDB(movie);
-      });
-
-      const gptMoviesData = await Promise.all(moviePromiseArray);
-
-      console.log(gptMoviesData);
+      const moviePromiseArray = gptMovieNames.map((movie) =>
+        searchMovieTMDB(movie)
+      );
+      const gptMoviesResults = await Promise.all(moviePromiseArray);
+      console.log(gptMoviesResults);
+      dispatch(
+        addMovies({ movieNames: gptMovieNames, movieResults: gptMoviesResults })
+      );
     }
   };
 
