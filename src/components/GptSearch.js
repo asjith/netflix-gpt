@@ -1,8 +1,14 @@
+import { useSelector } from "react-redux";
 import { LOGIN_BACKGROUND } from "../utils/constants";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import GptSearchBar from "./GptSearchBar";
+import Searching from "./Searching";
 
 const GptSearch = () => {
+  const clickedSearchButton = useSelector(
+    (store) => store.gptSearch.clickedSearchButton
+  );
+
   return (
     <div className="relative h-screen">
       <div className="absolute -z-10 h-full w-full">
@@ -17,7 +23,7 @@ const GptSearch = () => {
           <GptSearchBar />
         </div>
         <div className="bg-black w-full">
-          <GptMovieSuggestions />
+          {clickedSearchButton ? <Searching /> : <GptMovieSuggestions />}
         </div>
       </div>
     </div>

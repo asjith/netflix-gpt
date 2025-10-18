@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
 import { MOVIE_API_OPTIONS } from "../utils/constants";
 import useSearchMovies from "../hooks/useSearchMovies";
-import { addMovies } from "../utils/gptSearchSlice";
+import { addMovies, toggleClickedSearchButton } from "../utils/gptSearchSlice";
 
 const GptSearchBar = () => {
   const searchText = useRef();
@@ -13,7 +13,11 @@ const GptSearchBar = () => {
   const dispatch = useDispatch();
 
   const handleGptSearchClick = async () => {
-    console.log("searching...");
+    console.log("Searching...");
+
+    dispatch(toggleClickedSearchButton(1));
+    dispatch(addMovies({ movieNames: null, movieResults: null }));
+
     const response = await openai.responses.create({
       model: "gpt-5-mini",
       instructions:
@@ -56,6 +60,7 @@ const GptSearchBar = () => {
       dispatch(
         addMovies({ movieNames: gptMovieNames, movieResults: gptMoviesResults })
       );
+      dispatch(toggleClickedSearchButton(0));
     }
   };
 

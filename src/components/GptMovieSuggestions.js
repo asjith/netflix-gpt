@@ -1,11 +1,8 @@
-import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import MovieCard from "./MovieCard";
-import useBreakpoints from "../hooks/useBreakpoints";
 
 const GptMovieSuggestions = () => {
   const gpt = useSelector((store) => store.gptSearch);
-  const { isDesktop } = useBreakpoints();
 
   const { movieNames, movieResults } = gpt;
 
