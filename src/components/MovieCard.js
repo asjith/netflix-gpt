@@ -4,10 +4,14 @@ import {
 } from "../utils/constants";
 
 const MovieCard = (props) => {
-  const { visiblity, poster } = props;
+  const { visiblity, poster, calledFromGptSearch } = props;
   return (
     <img
-      className={`movie ${visiblity ? "" : "not-visible"}`}
+      className={
+        calledFromGptSearch == "GptMovieSuggestions"
+          ? "gpt-movies"
+          : `movie ${visiblity ? "" : "not-visible"}`
+      }
       src={MOVIE_IMAGE_BASE_URL + MOVIE_CARD_IMAGE_SIZE + poster}
     />
   );

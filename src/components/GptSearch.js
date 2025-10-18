@@ -12,9 +12,13 @@ const GptSearch = () => {
           alt="background"
         />
       </div>
-      <div className="flex flex-col items-center justify-evenly h-full">
-        <GptSearchBar />
-        <GptMovieSuggestions />
+      <div className="h-full">
+        <div className="h-1/2 flex justify-center items-center">
+          <GptSearchBar />
+        </div>
+        <div className="bg-black w-full">
+          <GptMovieSuggestions />
+        </div>
       </div>
     </div>
   );

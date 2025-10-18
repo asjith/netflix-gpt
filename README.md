@@ -43,3 +43,4 @@
   - created openai api key and installed openai library
   - used openai library to get movie list for the query submitted
   - used TMDB search movie API to get the movie details
+  - designed movie suggestion section

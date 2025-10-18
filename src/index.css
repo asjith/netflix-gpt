@@ -122,3 +122,20 @@
     background-color: gray;
 
 }
+
+/*gptMovieSuggestions styles below*/
+
+.gpt-movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: stretch;
+
+}
+.gpt-movies {
+    width: 10rem;
+    aspect-ratio: 0.7;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}

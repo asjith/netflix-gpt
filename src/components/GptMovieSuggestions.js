@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import MovieCard from "./MovieCard";
+import useBreakpoints from "../hooks/useBreakpoints";
 
 const GptMovieSuggestions = () => {
-  return <div className=" bg-black text-white w-full">GptMovieSuggestions</div>;
+  const gpt = useSelector((store) => store.gptSearch);
+  const { isDesktop } = useBreakpoints();
+
+  const { movieNames, movieResults } = gpt;
+
+  if (!movieResults) return;
+
+  return (
+    <div className="gpt-movie-container">
+      {movieResults.map((perMovieResults) => {
+        return perMovieResults.map((result) => {
+          if (result.poster_path) {
+            return (
+              <MovieCard
+                key={result.id}
+                visiblity={true}
+                poster={result.poster_path}
+                calledFromGptSearch="GptMovieSuggestions"
+              />
+            );
+          }
+        });
+      })}
+    </div>
+  );
 };
 
 export default GptMovieSuggestions;
