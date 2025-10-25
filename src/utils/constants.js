@@ -11,8 +11,7 @@ export const MOVIE_API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZmI1MjViYjUwNzg3YjJkOGMwNDkwZWQ3NWEzYmY4OSIsIm5iZiI6MTc1MzUxMDg1My41MDU5OTk4LCJzdWIiOiI2ODg0NzNjNWQ5ZGExOGU1MTY4YTY5NDQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.gZV7cAg3heypzMdQmStrefebl3riz2sBeNUxFQzcwhE",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY,
   },
 };
 
