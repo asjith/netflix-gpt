@@ -125,12 +125,16 @@
 
 /*gptMovieSuggestions styles below*/
 
+.gpt-whole-movie-container {
+    padding: 1rem 3rem ;
+    display: flex;
+    flex-direction: column;
+}
 .gpt-movie-container {
-    padding: 1rem 0;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: stretch;
 
 }
