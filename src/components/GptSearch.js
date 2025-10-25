@@ -13,7 +13,7 @@ const GptSearch = () => {
     <div className="relative h-screen">
       <div className="absolute -z-10 h-full w-full">
         <img
-          className="brightness-50 object-cover h-full w-full"
+          className="brightness-50 object-cover h-full w-full fixed"
           src={LOGIN_BACKGROUND}
           alt="background"
         />
@@ -22,7 +22,7 @@ const GptSearch = () => {
         <div className="h-1/2 flex justify-center items-center">
           <GptSearchBar />
         </div>
-        <div className="bg-black w-full">
+        <div className="bg-black w-full bg-opacity-85">
           {clickedSearchButton ? <Searching /> : <GptMovieSuggestions />}
         </div>
       </div>

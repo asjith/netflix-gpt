@@ -14,6 +14,7 @@ const gptSearchSlice = createSlice({
       if (state.enableGptSearch == false) {
         state.movieNames = null;
         state.movieResults = null;
+        state.clickedSearchButton = null;
       }
     },
     addMovies: (state, action) => {
