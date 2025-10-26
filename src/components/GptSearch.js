@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { LOGIN_BACKGROUND } from "../utils/constants";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import GptSearchBar from "./GptSearchBar";
-import Searching from "./Searching";
+import ShimmerUi from "./ShimmerUi";
 
 const GptSearch = () => {
   const clickedSearchButton = useSelector(
@@ -23,7 +23,7 @@ const GptSearch = () => {
           <GptSearchBar />
         </div>
         <div className="bg-black w-full bg-opacity-85">
-          {clickedSearchButton ? <Searching /> : <GptMovieSuggestions />}
+          {clickedSearchButton ? <ShimmerUi /> : <GptMovieSuggestions />}
         </div>
       </div>
     </div>
