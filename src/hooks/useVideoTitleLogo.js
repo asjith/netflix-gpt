@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   MOVIE_API_OPTIONS,
   MOVIE_IMAGE_BASE_URL,
@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 const useVideoTitleLogo = (movieId) => {
   const dispatch = useDispatch();
+  const videoTitleLogo = useSelector((store) => store.movies.videoTitleLogo);
 
   const getMovieLogo = async () => {
     const data = await fetch(
@@ -30,7 +31,7 @@ const useVideoTitleLogo = (movieId) => {
   };
 
   useEffect(() => {
-    getMovieLogo();
+    if (!videoTitleLogo) getMovieLogo();
   }, []);
 };
 
