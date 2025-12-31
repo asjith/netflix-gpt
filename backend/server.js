@@ -1,8 +1,15 @@
 import express from "express";
+import cors from "cors";
 import "dotenv/config";
 import { MOVIE_API_OPTIONS } from "./constants.js";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Server is ready");
