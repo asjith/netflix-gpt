@@ -1,19 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { MOVIE_API_OPTIONS } from "../utils/constants";
 import { addMovieTrailer } from "../utils/moviesSlice";
 import { useEffect } from "react";
+import { TMDB_TRAILERS } from "../utils/constants";
 
 const useMovieTrailer = (movieId) => {
   const dispatch = useDispatch();
   const movieTrailer = useSelector((store) => store.movies.movieTrailer);
 
   const getMovieTrailer = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" +
-        movieId +
-        "/videos?language=en-US",
-      MOVIE_API_OPTIONS
-    );
+    const data = await fetch(TMDB_TRAILERS + movieId);
     const json = await data.json();
 
     //many elements inside json.resulta with different types like trialer, teaser, clip

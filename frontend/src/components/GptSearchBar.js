@@ -2,7 +2,6 @@ import { useRef } from "react";
 import language from "../utils/languageConstants";
 import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
-import { MOVIE_API_OPTIONS } from "../utils/constants";
 import useSearchMovies from "../hooks/useSearchMovies";
 import { addMovies, toggleClickedSearchButton } from "../utils/gptSearchSlice";
 

@@ -1,13 +1,8 @@
-import { MOVIE_API_OPTIONS } from "../utils/constants";
+import { TMDB_SEARCH } from "../utils/constants";
 
 const useSearchMovies = () => {
   const searchMovieTMDB = async (movie) => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" +
-        movie +
-        "&include_adult=false&language=en-US&page=1",
-      MOVIE_API_OPTIONS
-    );
+    const data = await fetch(TMDB_SEARCH + movie);
     const json = await data.json();
 
     const movieData = json.results.filter((item) => {

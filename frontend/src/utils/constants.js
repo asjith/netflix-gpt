@@ -7,14 +7,6 @@ export const USER_ICON =
 export const LOGIN_BACKGROUND =
   "https://assets.nflxext.com/ffe/siteui/vlv3/7968847f-3da9-44b3-8bbb-13a46579881f/web/IN-en-20250609-TRIFECTA-perspective_32b70b51-20d4-46db-8a1a-3d5428be5f0e_large.jpg";
 
-export const MOVIE_API_OPTIONS = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY,
-  },
-};
-
 export const BREAKPOINTS = {
   mobile: 0,
   tablet: 768,
@@ -31,3 +23,24 @@ export const SUPPORTED_LANGUAGE = [
   { id: "hindi", name: "Hindi" },
   { id: "malayalam", name: "Malayalam" },
 ];
+
+export const TMDB_SEARCH =
+  "https://netflix-gpt-backend-tau.vercel.app/api/search?movie=";
+
+export const TMDB_TRAILERS =
+  "https://netflix-gpt-backend-tau.vercel.app/api/trailers?movieId=";
+
+export const TMDB_UPCOMING =
+  "https://netflix-gpt-backend-tau.vercel.app/api/upcoming";
+
+export const TMDB_TOP_RATED =
+  "https://netflix-gpt-backend-tau.vercel.app/api/top_rated";
+
+export const TMDB_POPULAR =
+  "https://netflix-gpt-backend-tau.vercel.app/api/popular";
+
+export const TMDB_NOW_PLAYING =
+  "https://netflix-gpt-backend-tau.vercel.app/api/now_playing";
+
+export const TMDB_MOVIE_LOGO =
+  "https://netflix-gpt-backend-tau.vercel.app/api/movie_logo?movieId=";

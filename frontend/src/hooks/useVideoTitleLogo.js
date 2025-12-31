@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  MOVIE_API_OPTIONS,
+  TMDB_MOVIE_LOGO,
   MOVIE_IMAGE_BASE_URL,
   MOVIE_LOGO_IMAGE_SIZE,
 } from "../utils/constants";
@@ -12,10 +12,7 @@ const useVideoTitleLogo = (movieId) => {
   const videoTitleLogo = useSelector((store) => store.movies.videoTitleLogo);
 
   const getMovieLogo = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + movieId + "/images",
-      MOVIE_API_OPTIONS
-    );
+    const data = await fetch(TMDB_MOVIE_LOGO + movieId);
     const json = await data.json();
 
     //filtering english logo
