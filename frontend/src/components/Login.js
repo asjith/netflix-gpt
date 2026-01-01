@@ -22,6 +22,9 @@ const Login = () => {
 
   const handleIsSignInUp = () => {
     setIsSignIn(!isSignIn);
+    email.current.value = "";
+    password.current.value = "";
+    setErrorMsg("");
   };
 
   const handleSignInUp = () => {
@@ -84,18 +87,19 @@ const Login = () => {
   return (
     <div className="relative h-screen">
       <Header />
-      <div className="absolute z-0  h-full w-full bg-black"></div>
+      <div className="absolute z-0 min-h-screen w-full bg-black"></div>
       {!isMobile && (
-        <div className="absolute z-0  h-full w-full">
-          <img
-            className="brightness-50 object-cover h-full w-full"
-            src={LOGIN_BACKGROUND}
-            alt="background"
-          />
-        </div>
+        <img
+          className="absolute z-0 brightness-50 object-cover min-h-screen w-full"
+          src={LOGIN_BACKGROUND}
+          alt="background"
+        />
       )}
 
-      <form className="absolute z-20 bg-black h-auto w-full px-[3rem] py-[2rem] my-[9%] text-white  bg-opacity-0 right-0 left-0 md:bg-opacity-75 md:rounded-md md:w-[28rem] md:mx-auto">
+      <form
+        className="absolute z-20 bg-black h-auto w-full px-[3rem] py-[2rem] my-[9%] text-white  bg-opacity-0 right-0 left-0 md:bg-opacity-75 md:rounded-md md:w-[28rem] md:mx-auto"
+        onSubmit={(e) => e.preventDefault()}
+      >
         <h1 className="my-5 font-bold text-3xl">
           {isSignIn ? "Sign In" : "Sign Up"}
         </h1>
@@ -121,17 +125,21 @@ const Login = () => {
         ></input>
         <p className="my-5 font-bold text-red-700">{errorMsg}</p>
         <button
-          type="button"
+          type="submit"
           className="my-3 p-2 w-full bg-red-700 font-bold rounded-md"
           onClick={handleSignInUp}
         >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
-        <p className="my-5 cursor-pointer" onClick={handleIsSignInUp}>
+        <button
+          type="button"
+          className="my-5 cursor-pointer"
+          onClick={handleIsSignInUp}
+        >
           {isSignIn
             ? "New to Netflix? Sign Up now"
             : "Already registered? Sign In now"}
-        </p>
+        </button>
       </form>
     </div>
   );

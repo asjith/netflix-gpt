@@ -12,8 +12,6 @@ const GptSearchBar = () => {
   const dispatch = useDispatch();
 
   const handleGptSearchClick = async () => {
-    console.log("Searching...");
-
     dispatch(toggleClickedSearchButton(1));
     dispatch(addMovies({ movieNames: null, movieResults: null }));
 
@@ -49,13 +47,13 @@ const GptSearchBar = () => {
     const gptMovieNames = response?.output_text?.split(", ");
 
     if (!gptMovieNames || gptMovieNames.length <= 3) {
-      console.log("Sorry, could not find.", response.output_text);
+      console.error("Sorry, could not find.", response.output_text);
     } else {
       const moviePromiseArray = gptMovieNames.map((movie) =>
         searchMovieTMDB(movie)
       );
       const gptMoviesResults = await Promise.all(moviePromiseArray);
-      console.log(gptMoviesResults);
+
       dispatch(
         addMovies({ movieNames: gptMovieNames, movieResults: gptMoviesResults })
       );

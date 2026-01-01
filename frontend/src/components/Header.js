@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO, SUPPORTED_LANGUAGE, USER_ICON } from "../utils/constants";
+import { SUPPORTED_LANGUAGE, USER_ICON } from "../utils/constants";
 import useBreakpoints from "../hooks/useBreakpoints";
 import search from "../icons/search.png";
 import { toggleGptSearch } from "../utils/gptSearchSlice";
 import { changeLanguage } from "../utils/configSlice";
 import home from "../icons/home.png";
+import logoURL from "../icons/logo.png";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -58,23 +59,28 @@ const Header = () => {
   const { isTablet, isDesktop } = useBreakpoints();
 
   return (
-    <div className="absolute z-10 px-[3rem] py-4 w-full flex justify-between bg-gradient-to-b from-black/100">
+    <div
+      className={
+        "fixed z-10 px-[3rem] py-2 w-full flex justify-between  " +
+        (user ? "bg-black" : "bg-gradient-to-b from-black/100")
+      }
+    >
       <div className="flex items-center">
-        <img className="w-[20%]" src={LOGO} alt="logo" />
+        <img className="w-4 md:w-8" src={logoURL} alt="logo" />
       </div>
 
       {user && (
         <div className="flex items-center shrink-0">
           {(isTablet || isDesktop) && (
-            <p className="p-2 font-bold text-white">
+            <p className="px-2 font-bold text-white">
               Hello {user.displayName}!
             </p>
           )}
           <button onClick={handleGptSearch}>
             {enableGptSearch ? (
-              <img className="mx-2" src={home} />
+              <img className="mx-2 w-4 md:w-8" src={home} />
             ) : (
-              <img className="mx-2" src={search} />
+              <img className="mx-2 w-4 md:w-8" src={search} />
             )}
           </button>
           {enableGptSearch && (
@@ -93,9 +99,13 @@ const Header = () => {
               ))}
             </select>
           )}
-          <img className="mx-2 rounded-sm" src={USER_ICON} alt="user-icon" />
+          <img
+            className="mx-2 rounded-sm w-4 md:w-8"
+            src={USER_ICON}
+            alt="user-icon"
+          />
           <button
-            className="border border-red-700 bg-red-700 text-white font-medium rounded-sm px-2 py-1.5 self-stretch text-xs sm:text-sm md:self-center"
+            className="h-4 flex justify-center items-center md:h-8 border border-red-700 bg-red-700 text-white font-medium rounded-sm px-2 py-1.5 self-stretch text-xs md:self-center"
             onClick={handleSignOut}
           >
             Sign Out
