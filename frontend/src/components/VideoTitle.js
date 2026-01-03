@@ -13,7 +13,7 @@ const VideoTitle = (props) => {
   const { isDesktop } = useBreakpoints();
 
   return (
-    <div className="absolute bottom-0 px-[3rem] pt-[20%] bg-gradient-to-r from-black  aspect-video h-full lg:pt-52">
+    <div className="absolute bottom-0 px-[1rem] pt-[20%] bg-gradient-to-r from-black  aspect-video h-full lg:pt-52 sm:px-[3rem]">
       <div className="w-[15%]">
         {movieLogo ? (
           <img src={movieLogo}></img>
@@ -24,15 +24,15 @@ const VideoTitle = (props) => {
 
       {isDesktop && <p className="text-sm text-white my-2 w-1/2">{overview}</p>}
       <div className=" flex flex-grow-0 my-[2%] ">
-        <button className="py-1 px-4 bg-white text-black  rounded-md font-bold text-xs sm:text-sm lg:text-lg hover:bg-opacity-80">
+        <button className="px-2 py-[0.1rem] bg-white text-black  rounded-md font-bold text-[0.5rem] sm:py-1 sm:px-4 sm:text-sm lg:text-lg hover:bg-opacity-80">
           <div className="flex items-center shrink-0">
-            <img className="size-3 mr-2 lg:size-5" src={play} />
+            <img className="size-[0.5rem] mr-2 lg:size-5" src={play} />
             <p>Play</p>
           </div>
         </button>
-        <button className="py-1 px-4 bg-white text-white rounded-md font-bold text-xs sm:text-sm lg:text-lg bg-opacity-30 mx-2 hover:bg-opacity-15">
+        <button className="px-2 py-[0.1rem] bg-white text-white rounded-md font-bold text-[0.5rem] sm:py-1 sm:px-4 sm:text-sm lg:text-lg bg-opacity-30 mx-2 hover:bg-opacity-15">
           <div className="flex items-center shrink-0">
-            <img className="size-5 mr-2 lg:size-6" src={info}></img>
+            <img className="size-[0.5rem] mr-2 lg:size-6" src={info}></img>
             <p>More Info</p>
           </div>
         </button>

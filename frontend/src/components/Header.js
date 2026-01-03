@@ -61,7 +61,7 @@ const Header = () => {
   return (
     <div
       className={
-        "fixed z-10 px-[3rem] py-2 w-full flex justify-between  " +
+        "fixed z-10 px-[1rem] py-2 w-full flex justify-between sm:px-[3rem]  " +
         (user ? "bg-black" : "bg-gradient-to-b from-black/100")
       }
     >
