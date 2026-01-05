@@ -5,8 +5,12 @@ import Loading from "./Loading";
 
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
+  const isOnline = useSelector((store) => store.config.isOnline);
 
-  if (!movies) return <Loading />;
+  if (!movies) {
+    if (isOnline) return <Loading />;
+    else return;
+  }
 
   const movie = movies[0];
 

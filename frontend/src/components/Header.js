@@ -11,6 +11,7 @@ import { toggleGptSearch } from "../utils/gptSearchSlice";
 import { changeLanguage } from "../utils/configSlice";
 import home from "../icons/home.png";
 import logoURL from "../icons/logo.png";
+import userURL from "../icons/user.png";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -66,7 +67,9 @@ const Header = () => {
       }
     >
       <div className="flex items-center">
-        <img className="w-4 md:w-8" src={logoURL} alt="logo" />
+        <a href="/">
+          <img className="w-4 md:w-8" src={logoURL} alt="logo" />
+        </a>
       </div>
 
       {user && (
@@ -103,6 +106,7 @@ const Header = () => {
             className="mx-2 rounded-sm w-4 md:w-8"
             src={USER_ICON}
             alt="user-icon"
+            onError={(e) => (e.target.src = userURL)}
           />
           <button
             className="h-4 flex justify-center items-center md:h-8 border border-red-700 bg-red-700 text-white font-medium rounded-sm px-2 py-1.5 self-stretch text-xs md:self-center"
