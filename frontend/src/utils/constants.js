@@ -14,6 +14,7 @@ export const BREAKPOINTS = {
 export const MOVIE_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
 export const MOVIE_LOGO_IMAGE_SIZE = "w300";
 export const MOVIE_CARD_IMAGE_SIZE = "w300";
+export const MOVIE_BACKGROUND_IMAGE_SIZE = "w500";
 
 export const SUPPORTED_LANGUAGE = [
   { id: "en", name: "English" },
@@ -41,3 +42,6 @@ export const TMDB_NOW_PLAYING =
 
 export const TMDB_MOVIE_LOGO =
   "https://netflix-gpt-backend-tau.vercel.app/api/movie_logo?movieId=";
+
+export const TMDB_MOVIE_IMAGE =
+  "https://netflix-gpt-backend-tau.vercel.app/api/movie_images?movieId=";
