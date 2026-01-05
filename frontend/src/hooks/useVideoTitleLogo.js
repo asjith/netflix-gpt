@@ -12,19 +12,36 @@ const useVideoTitleLogo = (movieId) => {
   const videoTitleLogo = useSelector((store) => store.movies.videoTitleLogo);
 
   const getMovieLogo = async () => {
-    const data = await fetch(TMDB_MOVIE_LOGO + movieId);
-    const json = await data.json();
+    try {
+      const data = await fetch(TMDB_MOVIE_LOGO + movieId);
 
-    //filtering english logo
-    const englishLogoFilePaths = json?.logos.filter(
-      (logo) => logo.iso_639_1 === "en"
-    );
-    const image =
-      MOVIE_IMAGE_BASE_URL +
-      MOVIE_LOGO_IMAGE_SIZE +
-      englishLogoFilePaths[0]?.file_path;
+      if (!data.ok)
+        throw new Error(
+          `HTTP error: ${data.status} ${data.statusText} at ${
+            data.url
+          } (${new Date().toISOString()})`
+        );
 
-    dispatch(addVideoTitleLogo(image));
+      const json = await data.json();
+
+      //filtering english logo
+      const englishLogoFilePaths = json?.logos.filter(
+        (logo) => logo.iso_639_1 === "en"
+      );
+      const image =
+        MOVIE_IMAGE_BASE_URL +
+        MOVIE_LOGO_IMAGE_SIZE +
+        englishLogoFilePaths[0]?.file_path;
+
+      dispatch(addVideoTitleLogo(image));
+    } catch (error) {
+      //http error
+      if (error.message.includes("HTTP error")) {
+        console.error(error.message);
+      } else {
+        console.error("Network error: ", error);
+      }
+    }
   };
 
   useEffect(() => {
