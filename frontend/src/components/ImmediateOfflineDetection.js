@@ -7,7 +7,7 @@ const ImmediateOfflineDetection = () => {
   if (isOnline) return;
   return (
     <div
-      className="fixed z-50 left-1/2 top-12 px-4 py-2 bg-yellow-600 text-xs text-white font-bold flex gap-1 items-center"
+      className="fixed z-50 left-1/2 top-12 px-4 py-2 bg-yellow-600 text-[0.5rem] text-white font-bold flex gap-1 items-center whitespace-nowrap sm:text-xs"
       style={{ transform: `translateX(-50%)` }}
     >
       <img className="w-5 h-5" src={warningURL} alt="warning" />
