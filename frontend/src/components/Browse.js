@@ -7,12 +7,15 @@ import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import { useSelector } from "react-redux";
 import GptSearch from "./GptSearch";
+import useOnlineStatus from "../hooks/useOnlineStatus";
+import ImmediateOfflineDetection from "./ImmediateOfflineDetection";
 
 const Browse = () => {
   const enableGptSearch = useSelector(
     (store) => store.gptSearch.enableGptSearch
   );
 
+  useOnlineStatus();
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
@@ -21,6 +24,7 @@ const Browse = () => {
   return (
     <div>
       <Header />
+      <ImmediateOfflineDetection />
       {enableGptSearch ? (
         <GptSearch />
       ) : (
