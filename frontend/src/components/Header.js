@@ -88,7 +88,7 @@ const Header = () => {
           </button>
           {enableGptSearch && (
             <select
-              className="border border-black bg-black text-white font-medium rounded-sm px-2 py-1.5 self-stretch text-xs sm:text-sm md:self-center"
+              className="border border-black bg-black text-white font-medium rounded-sm self-stretch text-[0.65rem] md:text-sm md:self-center md:px-2 md:py-1.5"
               onChange={handleChangeLanguage}
             >
               {SUPPORTED_LANGUAGE.map((lang) => (

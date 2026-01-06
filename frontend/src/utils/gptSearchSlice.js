@@ -7,6 +7,7 @@ const gptSearchSlice = createSlice({
     movieNames: null,
     movieResults: null,
     clickedSearchButton: null,
+    notFound: false,
   },
   reducers: {
     toggleGptSearch: (state) => {
@@ -25,9 +26,16 @@ const gptSearchSlice = createSlice({
     toggleClickedSearchButton: (state, action) => {
       state.clickedSearchButton = action.payload;
     },
+    setNotFound: (state, action) => {
+      state.notFound = action.payload;
+    },
   },
 });
 
-export const { toggleGptSearch, addMovies, toggleClickedSearchButton } =
-  gptSearchSlice.actions;
+export const {
+  toggleGptSearch,
+  addMovies,
+  toggleClickedSearchButton,
+  setNotFound,
+} = gptSearchSlice.actions;
 export default gptSearchSlice.reducer;

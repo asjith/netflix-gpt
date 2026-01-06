@@ -15,7 +15,7 @@ const VideoBackground = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadVideo(true);
-    }, 10000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);

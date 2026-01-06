@@ -135,7 +135,7 @@
 .gpt-whole-movie-container {
     padding: 1rem 3rem ;
     display: flex;
-    flex-direction: column;
+    gap: 1rem;
 }
 .gpt-movie-container {
     display: flex;

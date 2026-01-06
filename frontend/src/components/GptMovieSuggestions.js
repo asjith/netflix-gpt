@@ -1,41 +1,31 @@
 import { useSelector } from "react-redux";
 import MovieCard from "./MovieCard";
+import React from "react";
+import NoResultsFound from "./NoResultsFound";
 
 const GptMovieSuggestions = () => {
   const gpt = useSelector((store) => store.gptSearch);
 
-  const { movieNames, movieResults } = gpt;
+  const { movieNames, movieResults, notFound } = gpt;
+
+  if (notFound) return <NoResultsFound />;
 
   if (!movieResults) return;
 
   return (
     <div className="gpt-whole-movie-container">
       {movieResults.map((perMovieResults, index) => {
-        return (
-          <>
-            {perMovieResults.length > 0 && (
-              <div className="my-4">
-                <h1 className="text-white font-bold text-xl py-2">
-                  {movieNames[index]}
-                </h1>
-                <div className="gpt-movie-container">
-                  {perMovieResults.map((result) => {
-                    if (result.poster_path && result.popularity > 1) {
-                      return (
-                        <MovieCard
-                          key={result.id}
-                          visiblity={true}
-                          poster={result.poster_path}
-                          calledFromGptSearch="GptMovieSuggestions"
-                        />
-                      );
-                    }
-                  })}
-                </div>
-              </div>
-            )}
-          </>
-        );
+        if (Object.keys(perMovieResults).length > 0)
+          return (
+            <React.Fragment key={movieNames[index]}>
+              <MovieCard
+                key={perMovieResults.id}
+                visiblity={true}
+                poster={perMovieResults.poster_path}
+                calledFromGptSearch="GptMovieSuggestions"
+              />
+            </React.Fragment>
+          );
       })}
     </div>
   );
