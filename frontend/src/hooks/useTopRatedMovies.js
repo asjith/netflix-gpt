@@ -6,16 +6,34 @@ import { TMDB_TOP_RATED } from "../utils/constants";
 const useTopRatedMovies = () => {
   const dispatch = useDispatch();
   const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
+  const isOnline = useSelector((store) => store.config.isOnline);
 
   const getTopRatedMovies = async () => {
-    const data = await fetch(TMDB_TOP_RATED);
-    const json = await data.json();
-    dispatch(addTopRatedMovies(json.results));
+    try {
+      const data = await fetch(TMDB_TOP_RATED);
+
+      if (!data.ok)
+        throw new Error(
+          `HTTP error: ${data.status} ${data.statusText} at ${
+            data.url
+          } (${new Date().toISOString()})`
+        );
+
+      const json = await data.json();
+      dispatch(addTopRatedMovies(json.results));
+    } catch (error) {
+      if (error.message.includes("HTTP error")) {
+        console.error(error.message);
+      } else {
+        console.error("Network error, ", error);
+      }
+    }
   };
 
   useEffect(() => {
+    if (!navigator.onLine) return;
     if (!topRatedMovies) getTopRatedMovies();
-  }, []);
+  }, [isOnline]);
 };
 
 export default useTopRatedMovies;

@@ -18,11 +18,13 @@ const MovieList = (props) => {
 
   const calcNoOfMoviesPerSlide = () => {
     //get value of variable --movie-per-slider used in css. This varies with screen size.
-    const computedStyle = getComputedStyle(movieContainerInfo.current);
-    const strToIntMoviePerSlide = parseInt(
-      computedStyle.getPropertyValue("--movie-per-slider")
-    );
-    setMoviePerSlider(strToIntMoviePerSlide);
+    if (movieContainerInfo.current) {
+      const computedStyle = getComputedStyle(movieContainerInfo.current);
+      const strToIntMoviePerSlide = parseInt(
+        computedStyle.getPropertyValue("--movie-per-slider")
+      );
+      setMoviePerSlider(strToIntMoviePerSlide);
+    }
   };
 
   useEffect(() => {
