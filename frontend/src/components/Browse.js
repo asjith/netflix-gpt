@@ -9,14 +9,20 @@ import { useSelector } from "react-redux";
 import GptSearch from "./GptSearch";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import ImmediateOfflineDetection from "./ImmediateOfflineDetection";
+import { useState } from "react";
 
 const Browse = () => {
+  const [retryCount, setRetryCount] = useState(0);
   const enableGptSearch = useSelector(
     (store) => store.gptSearch.enableGptSearch
   );
 
+  const handleRetry = () => {
+    setRetryCount((rc) => rc + 1);
+  };
+
   useOnlineStatus();
-  useNowPlayingMovies();
+  useNowPlayingMovies(retryCount);
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
@@ -29,7 +35,7 @@ const Browse = () => {
         <GptSearch />
       ) : (
         <>
-          <MainContainer />
+          <MainContainer handleRetry={handleRetry} />
           <SecondaryContainer />
         </>
       )}

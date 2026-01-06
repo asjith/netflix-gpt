@@ -2,10 +2,14 @@ import { useSelector } from "react-redux";
 import VideoBackground from "./VideoBackground";
 import VideoTitle from "./VideoTitle";
 import Loading from "./Loading";
+import Error from "./Error";
 
-const MainContainer = () => {
+const MainContainer = ({ handleRetry }) => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
   const isOnline = useSelector((store) => store.config.isOnline);
+  const fetchError = useSelector((store) => store.config.fetchError);
+
+  if (fetchError) return <Error handleRetry={handleRetry} />;
 
   if (!movies) {
     if (isOnline) return <Loading />;

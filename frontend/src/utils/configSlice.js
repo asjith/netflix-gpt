@@ -5,6 +5,7 @@ const configSlice = createSlice({
   initialState: {
     language: "en",
     isOnline: true,
+    fetchError: false,
   },
   reducers: {
     changeLanguage: (state, action) => {
@@ -13,8 +14,12 @@ const configSlice = createSlice({
     setIsOnline: (state, action) => {
       state.isOnline = action.payload;
     },
+    setFetchError: (state, action) => {
+      state.fetchError = action.payload;
+    },
   },
 });
 
-export const { changeLanguage, setIsOnline } = configSlice.actions;
+export const { changeLanguage, setIsOnline, setFetchError } =
+  configSlice.actions;
 export default configSlice.reducer;
