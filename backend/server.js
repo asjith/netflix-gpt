@@ -134,6 +134,22 @@ app.get("/api/movie_logo", async (req, res) => {
   }
 });
 
+app.get("/api/movieDetails", async (req, res) => {
+  try {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/movie/" + req.query.movieId,
+      MOVIE_API_OPTIONS
+    );
+
+    if (!data.ok) throw new Error(`HTTP error, status: ${data.status}`);
+
+    const json = await data.json();
+    res.json(json);
+  } catch (error) {
+    res.status(500).json({ error: `Failed to fetch: ${error.message}` });
+  }
+});
+
 // const port = process.env.PORT || 3001;
 // app.listen(port, () => {
 //   console.log(`Server started at port ${port}`);

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import useMovieTrailer from "../hooks/useMovieTrailer";
-import useMovieImage from "../hooks/useMovieImage";
 import { useEffect, useState } from "react";
 import {
   MOVIE_BACKGROUND_IMAGE_SIZE,
