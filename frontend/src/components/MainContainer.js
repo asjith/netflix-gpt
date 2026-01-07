@@ -33,11 +33,11 @@ const MainContainer = () => {
 
   const movie = movies[0];
 
-  const { id, original_title, overview } = movie;
+  const { id, original_title, overview, backdrop_path } = movie;
 
   return (
     <div className="relative">
-      <VideoBackground movieId={id} />
+      <VideoBackground movieId={id} backdropImage={backdrop_path} />
       <VideoTitle movieId={id} title={original_title} overview={overview} />
     </div>
   );
