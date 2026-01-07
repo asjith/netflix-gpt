@@ -50,6 +50,12 @@ const Header = () => {
   };
 
   const handleGptSearch = () => {
+    if (enableGptSearch) {
+      navigate("/browse");
+    } else {
+      navigate("/browse/gptSearch");
+    }
+
     dispatch(toggleGptSearch());
   };
 
