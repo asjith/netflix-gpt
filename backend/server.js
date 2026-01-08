@@ -162,7 +162,8 @@ app.get("/api/movieDetails", async (req, res) => {
 app.get("/api/cast", async (req, res) => {
   try {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + req.query.movieId + "/credits"
+      "https://api.themoviedb.org/3/movie/" + req.query.movieId + "/credits",
+      MOVIE_API_OPTIONS
     );
 
     if (!data.ok) {
