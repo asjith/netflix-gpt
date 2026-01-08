@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { TMDB_MOVIE_CAST } from "../utils/constants";
+import CastCard from "./CastCard";
 
 const CastList = ({ movieId }) => {
   const [castList, setCastList] = useState([]);
@@ -30,10 +31,16 @@ const CastList = ({ movieId }) => {
     }
   };
 
+  if (castList.length === 0) return;
+
   return (
     <div className="p-4 mx-[1rem] sm:mx-[3rem]">
       <h2 className="text-2xl">Top Cast</h2>
-      <div></div>
+      <div className="grid grid-flow-col gap-2 overflow-x-scroll">
+        {castList.map((cast) => {
+          return <CastCard key={cast.id} castDetails={cast} />;
+        })}
+      </div>
     </div>
   );
 };
