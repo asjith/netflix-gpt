@@ -141,12 +141,21 @@ app.get("/api/movieDetails", async (req, res) => {
       MOVIE_API_OPTIONS
     );
 
-    if (!data.ok) throw new Error(`HTTP error, status: ${data.status}`);
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toISOString()})`,
+      });
+      return;
+    }
 
     const json = await data.json();
     res.json(json);
   } catch (error) {
-    res.status(500).json({ error: `Failed to fetch: ${error.message}` });
+    res
+      .status(500)
+      .json({ error: `Network error: Failed to fetch. ${error.message}` });
   }
 });
 
