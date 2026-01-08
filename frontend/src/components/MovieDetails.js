@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { TMDB_MOVIE_DETAILS } from "../utils/constants";
+import {
+  MOVIE_BACKGROUND_IMAGE_SIZE,
+  MOVIE_IMAGE_BASE_URL,
+  TMDB_MOVIE_DETAILS,
+} from "../utils/constants";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
 import NoResultsFound from "./NoResultsFound";
 import Error from "./Error";
+import MovieContent from "./MovieContent";
 
 const MovieDetails = () => {
+  const [movieDetails, setMovieDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [error, setError] = useState(false);
@@ -36,7 +42,8 @@ const MovieDetails = () => {
         );
 
       const json = await data.json();
-      console.log(json);
+
+      setMovieDetails(json);
     } catch (error) {
       if (error.message.includes("HTTP error")) {
         console.error(error.message);
@@ -60,7 +67,26 @@ const MovieDetails = () => {
 
   if (error) return <Error handleRetry={handleRetry} />;
 
-  return <div className="text-white h-96">MovieDetails</div>;
+  if (!movieDetails) return;
+
+  const backgroundImage =
+    MOVIE_IMAGE_BASE_URL +
+    MOVIE_BACKGROUND_IMAGE_SIZE +
+    movieDetails?.backdrop_path;
+
+  return (
+    <div className="bg-black text-white">
+      <div
+        className="h-96"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      ></div>
+      <MovieContent movie={movieDetails} />
+    </div>
+  );
 };
 
 export default MovieDetails;
