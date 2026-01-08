@@ -7,7 +7,7 @@ import useBreakpoints from "../hooks/useBreakpoints";
 const VideoTitle = (props) => {
   const { movieId, title, overview } = props;
 
-  const movieLogo = useSelector((store) => store.movies?.videoTitleLogo);
+  const movieLogo = useSelector((store) => store.movies?.mainVideoTitleLogo);
 
   useVideoTitleLogo(movieId);
   const { isDesktop } = useBreakpoints();

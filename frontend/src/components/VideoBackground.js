@@ -8,8 +8,9 @@ import {
 
 const VideoBackground = (props) => {
   const { movieId, backdropImage } = props;
+  const forDetails = false;
   const [loadVideo, setLoadVideo] = useState(false);
-  const movieTrailer = useSelector((store) => store.movies?.movieTrailer);
+  const movieTrailer = useSelector((store) => store.movies?.mainMovieTrailer);
   const isOnline = useSelector((store) => store.config.isOnline);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const VideoBackground = (props) => {
     return () => clearTimeout(timer);
   }, []);
 
-  useMovieTrailer(movieId);
+  useMovieTrailer(movieId, forDetails);
 
   const movieBackgroundImage =
     MOVIE_IMAGE_BASE_URL + MOVIE_BACKGROUND_IMAGE_SIZE + backdropImage;

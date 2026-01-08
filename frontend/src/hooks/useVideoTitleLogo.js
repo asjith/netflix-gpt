@@ -4,12 +4,14 @@ import {
   MOVIE_IMAGE_BASE_URL,
   MOVIE_LOGO_IMAGE_SIZE,
 } from "../utils/constants";
-import { addVideoTitleLogo } from "../utils/moviesSlice";
+import { addMainVideoTitleLogo } from "../utils/moviesSlice";
 import { useEffect } from "react";
 
 const useVideoTitleLogo = (movieId) => {
   const dispatch = useDispatch();
-  const videoTitleLogo = useSelector((store) => store.movies.videoTitleLogo);
+  const videoTitleLogo = useSelector(
+    (store) => store.movies.mainVideoTitleLogo
+  );
 
   const getMovieLogo = async () => {
     try {
@@ -33,7 +35,7 @@ const useVideoTitleLogo = (movieId) => {
         MOVIE_LOGO_IMAGE_SIZE +
         englishLogoFilePaths[0]?.file_path;
 
-      dispatch(addVideoTitleLogo(image));
+      dispatch(addMainVideoTitleLogo(image));
     } catch (error) {
       //http error
       if (error.message.includes("HTTP error")) {

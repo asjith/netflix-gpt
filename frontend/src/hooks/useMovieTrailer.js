@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addMovieTrailer } from "../utils/moviesSlice";
+import { addMainMovieTrailer } from "../utils/moviesSlice";
 import { useEffect } from "react";
 import { TMDB_TRAILERS } from "../utils/constants";
 
-const useMovieTrailer = (movieId) => {
+const useMovieTrailer = (movieId, forDetails) => {
   const dispatch = useDispatch();
-  const movieTrailer = useSelector((store) => store.movies.movieTrailer);
+  const movieTrailer = useSelector((store) => store.movies.mainMovieTrailer);
 
   const getMovieTrailer = async () => {
     try {
@@ -29,7 +29,7 @@ const useMovieTrailer = (movieId) => {
         ? filtertrailerData[0]
         : json.results[0];
 
-      dispatch(addMovieTrailer(trailer));
+      dispatch(addMainMovieTrailer(trailer));
     } catch (error) {
       if (error.message.includes("HTTP error")) {
         console.error(error.message);
