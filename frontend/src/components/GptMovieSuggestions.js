@@ -20,6 +20,7 @@ const GptMovieSuggestions = () => {
             <React.Fragment key={movieNames[index]}>
               <MovieCard
                 key={perMovieResults.id}
+                movieId={perMovieResults.id}
                 visiblity={true}
                 poster={perMovieResults.poster_path}
                 calledFromGptSearch="GptMovieSuggestions"

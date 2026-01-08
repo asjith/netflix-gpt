@@ -152,6 +152,7 @@ const MovieList = (props) => {
           {movies.map((movie) => (
             <MovieCard
               key={movie.id}
+              movieId={movie.id}
               visiblity={true}
               poster={movie.poster_path}
             />

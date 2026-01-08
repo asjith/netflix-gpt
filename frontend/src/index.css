@@ -49,6 +49,9 @@
     padding: 0.25rem;
     border-radius: 0.5rem;
 }
+.movie:hover{
+    transform: scale(1.05);
+}
 
 .not-visible{
     visibility: hidden;
@@ -150,6 +153,9 @@
     aspect-ratio: 0.7;
     object-fit: cover;
     border-radius: 0.5rem;
+}
+.gpt-movies:hover{
+    transform: scale(1.05);
 }
 
 .shimmer {

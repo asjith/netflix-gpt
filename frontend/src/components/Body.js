@@ -4,6 +4,7 @@ import Browse from "./Browse";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import GptSearch from "./GptSearch";
+import MovieDetails from "./MovieDetails";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -27,6 +28,10 @@ const Body = () => {
         {
           path: "gptSearch",
           element: <GptSearch />,
+        },
+        {
+          path: "details",
+          element: <MovieDetails />,
         },
       ],
     },
