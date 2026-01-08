@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MOVIE_CARD_IMAGE_SIZE,
   MOVIE_IMAGE_BASE_URL,
 } from "../utils/constants";
+import MovieTrailer from "./MovieTrailer";
 
 const MovieContent = ({ movie }) => {
+  const [openTrailer, setOpenTrailer] = useState(false);
+
+  const handleClick = () => {
+    setOpenTrailer(!openTrailer);
+  };
+
   const duration =
     `${Math.floor(movie.runtime / 60)} h ` +
     (movie.runtime % 60 !== 0 && `${movie.runtime % 60} m`);
@@ -14,11 +21,20 @@ const MovieContent = ({ movie }) => {
 
   return (
     <div className="relative flex flex-col items-center gap-6 mx-[1rem] sm:mx-[3rem] sm:flex-row">
-      <img
-        className="absolute -top-24 w-30 h-80 border-[15px] border-black rounded-md m-4 "
-        src={moviePoster}
-        alt={movie.title}
-      />
+      <button
+        type="button"
+        className="absolute -top-24 border-[15px] border-black rounded-md m-4"
+        onClick={handleClick}
+      >
+        <img
+          className="w-[12rem] h-[18rem]"
+          src={moviePoster}
+          alt={movie.title}
+        />
+      </button>
+      {openTrailer && (
+        <MovieTrailer movieId={movie.id} handleClick={handleClick} />
+      )}
       <div className="flex flex-col gap-6 m-4 mt-72 sm:ml-72 sm:my-10">
         <div className="flex flex-col gap-2">
           <h1 className="font-bold text-4xl">{movie.title}</h1>
