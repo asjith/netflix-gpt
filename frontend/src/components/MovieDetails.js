@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import NoResultsFound from "./NoResultsFound";
 import Error from "./Error";
 import MovieContent from "./MovieContent";
+import CastList from "./CastList";
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
@@ -85,6 +86,7 @@ const MovieDetails = () => {
         }}
       ></div>
       <MovieContent movie={movieDetails} />
+      <CastList movieId={movieDetails.id} />
     </div>
   );
 };

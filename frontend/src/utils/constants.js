@@ -45,3 +45,6 @@ export const TMDB_MOVIE_LOGO =
 
 export const TMDB_MOVIE_DETAILS =
   "https://netflix-gpt-backend-tau.vercel.app/api/movieDetails?movieId=";
+
+export const TMDB_MOVIE_CAST =
+  "https://netflix-gpt-backend-tau.vercel.app/api/cast?movieId=";
