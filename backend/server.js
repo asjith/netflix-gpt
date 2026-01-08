@@ -143,7 +143,7 @@ app.get("/api/movieDetails", async (req, res) => {
 
     if (!data.ok) {
       res.status(data.status).json({
-        error: `${data.status} ${data.statusText} at ${
+        error: `HTTP error ${data.status} ${data.statusText} at ${
           data.url
         } (${new Date().toISOString()})`,
       });
@@ -156,6 +156,28 @@ app.get("/api/movieDetails", async (req, res) => {
     res
       .status(500)
       .json({ error: `Network error: Failed to fetch. ${error.message}` });
+  }
+});
+
+app.get("/api/cast", async (req, res) => {
+  try {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/movie/" + req.query.movieId + "/credits"
+    );
+
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `HTTP error, ${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toISOString()})`,
+      });
+      return;
+    }
+
+    const json = await data.json();
+    res.json(json);
+  } catch (error) {
+    res.status(500).json({ error: `Network error, ${error}` });
   }
 });
 
