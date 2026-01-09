@@ -22,14 +22,19 @@ app.get("/api/now_playing", async (req, res) => {
       MOVIE_API_OPTIONS
     );
 
-    if (!data.ok) throw new Error(`HTTP error, status: ${data.status}`);
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `HTTP error, ${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toISOString()})`,
+      });
+      return;
+    }
 
     const json = await data.json();
     res.json(json);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: `Failed to fetch nowPlayingMovies : ${error.message}` });
+    res.status(500).json({ error: `Network error, ${error}` });
   }
 });
 
@@ -40,12 +45,19 @@ app.get("/api/popular", async (req, res) => {
       MOVIE_API_OPTIONS
     );
 
-    if (!data.ok) throw new Error(`HTTP error, status: ${data.status}`);
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `HTTP error, ${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toISOString()})`,
+      });
+      return;
+    }
 
     const json = await data.json();
     res.json(json);
   } catch (error) {
-    res.status(500).json({ error: `Failed to fetch: ${error.message}` });
+    res.status(500).json({ error: `Network error, ${error}` });
   }
 });
 
@@ -56,12 +68,19 @@ app.get("/api/top_rated", async (req, res) => {
       MOVIE_API_OPTIONS
     );
 
-    if (!data.ok) throw new Error(`HTTP error, status:${data.status}`);
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `HTTP error ${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toISOString()})`,
+      });
+      return;
+    }
 
     const json = await data.json();
     res.json(json);
   } catch (error) {
-    res.status(500).json({ error: `Failed to fetch: ${error.message}` });
+    res.status(500).json({ error: `Network error, ${error}` });
   }
 });
 
@@ -72,13 +91,20 @@ app.get("/api/upcoming", async (req, res) => {
       MOVIE_API_OPTIONS
     );
 
-    if (!data.ok) throw new Error(`HTTP error, status: ${data.status}`);
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `HTTP error, ${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toISOString()})`,
+      });
+      return;
+    }
 
     const json = await data.json();
 
     res.json(json);
   } catch (error) {
-    res.status(500).json({ error: `Failed to fetch: ${error.message}` });
+    res.status(500).json({ error: `Network error, ${error}` });
   }
 });
 
@@ -91,12 +117,19 @@ app.get("/api/trailers", async (req, res) => {
       MOVIE_API_OPTIONS
     );
 
-    if (!data.ok) throw new Error(`HTTP error, status: ${data.status}`);
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `HTTP error, ${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toDateString()})`,
+      });
+      return;
+    }
 
     const json = await data.json();
     res.json(json);
   } catch (error) {
-    res.status(500).json({ error: `Failed to fetch: ${error.message}` });
+    res.status(500).json({ error: `Network error, ${error}` });
   }
 });
 
@@ -109,12 +142,19 @@ app.get("/api/search", async (req, res) => {
       MOVIE_API_OPTIONS
     );
 
-    if (!data.ok) throw new Error(`HTTP error, status: ${data.status}`);
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `HTTP error, ${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toISOString()})`,
+      });
+      return;
+    }
 
     const json = await data.json();
     res.json(json);
   } catch (error) {
-    res.status(500).json({ error: `Failed to fetch: ${error.message}` });
+    res.status(500).json({ error: `Network error, ${error}` });
   }
 });
 
@@ -125,12 +165,19 @@ app.get("/api/movie_logo", async (req, res) => {
       MOVIE_API_OPTIONS
     );
 
-    if (!data.ok) throw new Error(`HTTP error, status: ${data.status}`);
+    if (!data.ok) {
+      res.status(data.status).json({
+        error: `HTTP error, ${data.status} ${data.statusText} at ${
+          data.url
+        } (${new Date().toISOString()})`,
+      });
+      return;
+    }
 
     const json = await data.json();
     res.json(json);
   } catch (error) {
-    res.status(500).json({ error: `Failed to fetch: ${error.message}` });
+    res.status(500).json({ error: `Network error, ${error}` });
   }
 });
 
