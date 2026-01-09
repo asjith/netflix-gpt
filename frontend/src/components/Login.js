@@ -11,10 +11,12 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { LOGIN_BACKGROUND } from "../utils/constants";
 import useBreakpoints from "../hooks/useBreakpoints";
+import loadingURL from "../icons/loading.png";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
   const fullName = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -33,6 +35,8 @@ const Login = () => {
     setErrorMsg(msg);
 
     if (msg) return;
+
+    setLoading(true);
 
     //if email password are valid
     if (!isSignIn) {
@@ -53,15 +57,18 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
+              setLoading(false);
             })
             .catch((error) => {
               setErrorMsg(error);
+              setLoading(false);
             });
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMsg(errorMessage);
+          setLoading(false);
         });
     } else {
       //Sign In logic
@@ -73,11 +80,13 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          setLoading(false);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMsg(errorMessage);
+          setLoading(false);
         });
     }
   };
@@ -126,10 +135,23 @@ const Login = () => {
         <p className="my-5 font-bold text-red-700">{errorMsg}</p>
         <button
           type="submit"
-          className="my-3 p-2 w-full bg-red-700 font-bold rounded-md"
+          className={
+            "my-3 p-2 w-full bg-red-700 font-bold rounded-md  " +
+            (loading && "bg-opacity-25")
+          }
           onClick={handleSignInUp}
         >
-          {isSignIn ? "Sign In" : "Sign Up"}
+          {loading ? (
+            <img
+              className="rotate w-5 h-5 mx-auto"
+              src={loadingURL}
+              alt="loading"
+            />
+          ) : isSignIn ? (
+            "Sign In"
+          ) : (
+            "Sign Up"
+          )}
         </button>
         <button
           type="button"
