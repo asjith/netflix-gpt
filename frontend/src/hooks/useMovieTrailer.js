@@ -27,6 +27,9 @@ const useMovieTrailer = (movieId, forDetails) => {
 
       const json = await data.json();
 
+      if (json.results.length === 0)
+        throw new Error("HTTP error: 404 not found");
+
       //many elements inside json.resulta with different types like trialer, teaser, clip
       const filtertrailerData = json.results.filter(
         (video) => video?.type === "Trailer"
