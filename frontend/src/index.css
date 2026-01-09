@@ -185,10 +185,10 @@
 }
 
 .rotate{
-    animation: rotate 1s linear infinite;
+    animation: rotateLoading 1s linear infinite;
 }
 
-@keyframes rotate{
+@keyframes rotateLoading{
     from{
         transform: rotate(0deg);
     }
@@ -229,6 +229,25 @@
     * {
         scrollbar-width: thin;
         scrollbar-color: rgba(220, 220, 220, 0.685) gray;
+    }
+}
+
+/** play button animation **/
+.play{
+    transform: translate(-50%,-50%);
+}
+.trailer:hover{
+    .play{
+        animation: rotatePlay 0.5s;
+    }
+}
+
+@keyframes rotatePlay {
+    from{
+        transform: translate(-50%, -50%) rotate(-90deg);
+    }
+    to{
+        transform: translate(-50%, -50%) rotate(0deg);
     }
 }
 

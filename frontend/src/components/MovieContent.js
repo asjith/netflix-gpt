@@ -4,6 +4,7 @@ import {
   MOVIE_IMAGE_BASE_URL,
 } from "../utils/constants";
 import MovieTrailer from "./MovieTrailer";
+import playURL from "../icons/playTrailer.png";
 
 const MovieContent = ({ movie }) => {
   const [openTrailer, setOpenTrailer] = useState(false);
@@ -23,13 +24,18 @@ const MovieContent = ({ movie }) => {
     <div className="relative flex flex-col items-center gap-6 mx-[1rem] sm:mx-[3rem] sm:flex-row">
       <button
         type="button"
-        className="absolute -top-24 border-[15px] border-black rounded-md m-4"
+        className="trailer absolute -top-24 border-[15px] border-black rounded-md m-4"
         onClick={handleClick}
       >
         <img
           className="w-[12rem] h-[18rem]"
           src={moviePoster}
           alt={movie.title}
+        />
+        <img
+          className="play absolute top-1/2 left-1/2 "
+          src={playURL}
+          alt="play-trailer"
         />
       </button>
       {openTrailer && (
