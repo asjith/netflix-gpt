@@ -114,8 +114,8 @@ const MovieList = (props) => {
   };
 
   return (
-    <div>
-      <div className="movie-list-header pt-[3%] pb-1">
+    <div className="pt-[2%] pb-[2%]">
+      <div className="movie-list-header py-1">
         <h1 className="title font-bold text-white text-xs sm:text-sm md:text-lg lg:text-xl">
           {title}
         </h1>
