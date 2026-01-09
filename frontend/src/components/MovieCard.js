@@ -6,7 +6,7 @@ import {
 import movieURL from "../icons/movie.png";
 
 const MovieCard = (props) => {
-  const { visiblity, poster, calledFromGptSearch, movieId } = props;
+  const { visiblity, poster, calledFromGptSearch, movieId, movieName } = props;
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -25,8 +25,9 @@ const MovieCard = (props) => {
       <img
         className="rounded-md hover:rounded-lg"
         src={MOVIE_IMAGE_BASE_URL + MOVIE_CARD_IMAGE_SIZE + poster}
-        alt="movie"
+        alt={movieName}
         onError={(e) => (e.target.src = movieURL)}
+        title={movieName}
       />
     </button>
   );

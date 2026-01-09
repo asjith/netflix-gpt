@@ -146,6 +146,7 @@ const MovieList = (props) => {
                   key={`clone-${movie.id}`}
                   visiblity={hasStartedMoving ? true : false}
                   poster={movie.poster_path}
+                  movieName={movie.title}
                 />
               ))
           }
@@ -155,6 +156,7 @@ const MovieList = (props) => {
               movieId={movie.id}
               visiblity={true}
               poster={movie.poster_path}
+              movieName={movie.title}
             />
           ))}
           {
@@ -164,6 +166,7 @@ const MovieList = (props) => {
                 key={`clone-${movie.id}`}
                 visiblity={true}
                 poster={movie.poster_path}
+                movieName={movie.title}
               />
             ))
           }

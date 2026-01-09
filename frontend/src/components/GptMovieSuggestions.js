@@ -24,6 +24,7 @@ const GptMovieSuggestions = () => {
                 visiblity={true}
                 poster={perMovieResults.poster_path}
                 calledFromGptSearch="GptMovieSuggestions"
+                movieName={perMovieResults.title}
               />
             </React.Fragment>
           );
