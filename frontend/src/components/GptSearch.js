@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { LOGIN_BACKGROUND } from "../utils/constants";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import GptSearchBar from "./GptSearchBar";
 import ShimmerUi from "./ShimmerUi";
+import backgroundURL from "../icons/background.jpg";
 
 const GptSearch = () => {
   const clickedSearchButton = useSelector(
@@ -14,7 +14,7 @@ const GptSearch = () => {
       <div className="absolute -z-10 h-full w-full">
         <img
           className="brightness-50 object-cover h-full w-full fixed"
-          src={LOGIN_BACKGROUND}
+          src={backgroundURL}
           alt="background"
         />
       </div>

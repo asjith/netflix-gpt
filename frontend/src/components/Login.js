@@ -12,6 +12,7 @@ import { addUser } from "../utils/userSlice";
 import { LOGIN_BACKGROUND } from "../utils/constants";
 import useBreakpoints from "../hooks/useBreakpoints";
 import loadingURL from "../icons/loading.png";
+import backgroundURL from "../icons/background.jpg";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -100,7 +101,7 @@ const Login = () => {
       {!isMobile && (
         <img
           className="absolute z-0 brightness-50 object-cover min-h-screen w-full"
-          src={LOGIN_BACKGROUND}
+          src={backgroundURL}
           alt="background"
         />
       )}
