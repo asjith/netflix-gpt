@@ -159,7 +159,7 @@ const Login = () => {
           onClick={handleIsSignInUp}
         >
           {isSignIn
-            ? "New to Netflix? Sign Up now"
+            ? "New to FilmFinder? Sign Up now"
             : "Already registered? Sign In now"}
         </button>
       </form>
