@@ -138,13 +138,14 @@
 .gpt-whole-movie-container {
     padding: 1rem 3rem ;
     display: flex;
+    justify-content: center;
     gap: 1rem;
 }
 .gpt-movie-container {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: stretch;
 
 }

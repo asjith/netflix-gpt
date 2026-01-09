@@ -14,21 +14,23 @@ const GptMovieSuggestions = () => {
 
   return (
     <div className="gpt-whole-movie-container">
-      {movieResults.map((perMovieResults, index) => {
-        if (Object.keys(perMovieResults).length > 0)
-          return (
-            <React.Fragment key={movieNames[index]}>
-              <MovieCard
-                key={perMovieResults.id}
-                movieId={perMovieResults.id}
-                visiblity={true}
-                poster={perMovieResults.poster_path}
-                calledFromGptSearch="GptMovieSuggestions"
-                movieName={perMovieResults.title}
-              />
-            </React.Fragment>
-          );
-      })}
+      <div className="gpt-movie-container">
+        {movieResults.map((perMovieResults, index) => {
+          if (Object.keys(perMovieResults).length > 0)
+            return (
+              <React.Fragment key={movieNames[index]}>
+                <MovieCard
+                  key={perMovieResults.id}
+                  movieId={perMovieResults.id}
+                  visiblity={true}
+                  poster={perMovieResults.poster_path}
+                  calledFromGptSearch="GptMovieSuggestions"
+                  movieName={perMovieResults.title}
+                />
+              </React.Fragment>
+            );
+        })}
+      </div>
     </div>
   );
 };
