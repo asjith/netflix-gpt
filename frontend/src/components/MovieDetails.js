@@ -11,9 +11,11 @@ import NoResultsFound from "./NoResultsFound";
 import Error from "./Error";
 import MovieContent from "./MovieContent";
 import CastList from "./CastList";
+import movieBackdropURL from "../icons/movieBackdrop.jpg";
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [error, setError] = useState(false);
@@ -25,6 +27,22 @@ const MovieDetails = () => {
     if (!navigator.onLine) return;
     fetchMovieDetails();
   }, [isOnline, retryCount]);
+
+  useEffect(() => {
+    const img = new Image();
+
+    img.src =
+      MOVIE_IMAGE_BASE_URL +
+      MOVIE_BACKGROUND_IMAGE_SIZE +
+      movieDetails?.backdrop_path;
+
+    img.onload = () => {
+      setBackgroundImage(img.src);
+    };
+    img.onerror = () => {
+      setBackgroundImage(movieBackdropURL);
+    };
+  }, [movieDetails]);
 
   const fetchMovieDetails = async () => {
     try {
@@ -69,11 +87,6 @@ const MovieDetails = () => {
   if (error) return <Error handleRetry={handleRetry} />;
 
   if (!movieDetails) return;
-
-  const backgroundImage =
-    MOVIE_IMAGE_BASE_URL +
-    MOVIE_BACKGROUND_IMAGE_SIZE +
-    movieDetails?.backdrop_path;
 
   return (
     <div className="bg-black text-white">
