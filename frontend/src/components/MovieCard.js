@@ -3,6 +3,7 @@ import {
   MOVIE_IMAGE_BASE_URL,
   MOVIE_CARD_IMAGE_SIZE,
 } from "../utils/constants";
+import movieURL from "../icons/movie.png";
 
 const MovieCard = (props) => {
   const { visiblity, poster, calledFromGptSearch, movieId } = props;
@@ -24,6 +25,8 @@ const MovieCard = (props) => {
       <img
         className="rounded-md hover:rounded-lg"
         src={MOVIE_IMAGE_BASE_URL + MOVIE_CARD_IMAGE_SIZE + poster}
+        alt="movie"
+        onError={(e) => (e.target.src = movieURL)}
       />
     </button>
   );
