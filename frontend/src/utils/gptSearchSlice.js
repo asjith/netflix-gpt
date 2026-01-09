@@ -10,8 +10,8 @@ const gptSearchSlice = createSlice({
     notFound: false,
   },
   reducers: {
-    toggleGptSearch: (state) => {
-      state.enableGptSearch = !state.enableGptSearch;
+    setGptSearch: (state, action) => {
+      state.enableGptSearch = action.payload;
       if (state.enableGptSearch == false) {
         state.movieNames = null;
         state.movieResults = null;
@@ -33,7 +33,7 @@ const gptSearchSlice = createSlice({
 });
 
 export const {
-  toggleGptSearch,
+  setGptSearch,
   addMovies,
   toggleClickedSearchButton,
   setNotFound,

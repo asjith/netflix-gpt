@@ -7,7 +7,6 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { SUPPORTED_LANGUAGE, USER_ICON } from "../utils/constants";
 import useBreakpoints from "../hooks/useBreakpoints";
 import search from "../icons/search.png";
-import { toggleGptSearch } from "../utils/gptSearchSlice";
 import { changeLanguage } from "../utils/configSlice";
 import home from "../icons/home.png";
 import logoURL from "../icons/logo.png";
@@ -50,13 +49,11 @@ const Header = () => {
   };
 
   const handleGptSearch = () => {
-    if (enableGptSearch) {
-      navigate("/browse");
-    } else {
-      navigate("/browse/gptSearch");
-    }
+    navigate("/browse/gptSearch");
+  };
 
-    dispatch(toggleGptSearch());
+  const handleHome = () => {
+    navigate("/browse");
   };
 
   const handleChangeLanguage = (e) => {
@@ -85,13 +82,16 @@ const Header = () => {
               Hello {user.displayName}!
             </p>
           )}
-          <button onClick={handleGptSearch}>
-            {enableGptSearch ? (
-              <img className="mx-2 w-4 md:w-8" src={home} />
-            ) : (
-              <img className="mx-2 w-4 md:w-8" src={search} />
-            )}
+          <button onClick={handleHome}>
+            <img className="mx-2 w-4 md:w-8" src={home} />
           </button>
+
+          {!enableGptSearch && (
+            <button onClick={handleGptSearch}>
+              <img className="mx-2 w-4 md:w-8" src={search} />
+            </button>
+          )}
+
           {enableGptSearch && (
             <select
               className="border border-black bg-black text-white font-medium rounded-sm self-stretch text-[0.65rem] md:text-sm md:self-center md:px-2 md:py-1.5"

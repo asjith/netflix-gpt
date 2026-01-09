@@ -1,13 +1,22 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import GptSearchBar from "./GptSearchBar";
 import ShimmerUi from "./ShimmerUi";
 import backgroundURL from "../icons/background.jpg";
+import { useEffect } from "react";
+import { setGptSearch } from "../utils/gptSearchSlice";
 
 const GptSearch = () => {
+  const dispatch = useDispatch();
   const clickedSearchButton = useSelector(
     (store) => store.gptSearch.clickedSearchButton
   );
+
+  useEffect(() => {
+    dispatch(setGptSearch(true));
+
+    return () => dispatch(setGptSearch(false));
+  }, []);
 
   return (
     <div className="relative h-screen">
