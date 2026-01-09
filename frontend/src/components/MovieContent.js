@@ -5,11 +5,15 @@ import {
 } from "../utils/constants";
 import MovieTrailer from "./MovieTrailer";
 import playURL from "../icons/playTrailer.png";
+import { useDispatch } from "react-redux";
+import { addCurrentMovieTrailer } from "../utils/moviesSlice";
 
 const MovieContent = ({ movie }) => {
   const [openTrailer, setOpenTrailer] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
+    if (openTrailer) dispatch(addCurrentMovieTrailer(null));
     setOpenTrailer(!openTrailer);
   };
 
