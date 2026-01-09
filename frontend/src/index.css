@@ -203,3 +203,35 @@
     -webkit-line-clamp: 1;
     overflow: hidden;
 }
+
+/** scrollbar styles **/
+/* supports chrome and safari*/
+::-webkit-scrollbar{
+    width: 0.35vw;
+    height: 0.35vw;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgba(220, 220, 220, 0.685);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: gainsboro;
+}
+
+::-webkit-scrollbar-track{
+    background-color: gray;
+    border-radius: 10px;
+}
+/* supports firefox*/
+@supports not selector(::-webkit-scrollbar){
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(220, 220, 220, 0.685) gray;
+    }
+}
+
+
+
+
