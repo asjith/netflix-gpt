@@ -65,7 +65,7 @@ const Header = () => {
   return (
     <div
       className={
-        "fixed z-10 px-[1rem] py-2 w-full flex justify-between sm:px-[3rem]  " +
+        "fixed z-10 px-[1rem] py-4 w-full flex justify-between sm:px-[3rem]  " +
         (user ? "bg-black" : "bg-gradient-to-b from-black/100")
       }
     >
@@ -76,7 +76,7 @@ const Header = () => {
       </div>
 
       {user && (
-        <div className="flex items-center shrink-0">
+        <div className="flex gap-2 items-center shrink-0 sm:gap-4">
           {(isTablet || isDesktop) && (
             <p className="px-2 font-bold text-white">
               Hello {user.displayName}!
