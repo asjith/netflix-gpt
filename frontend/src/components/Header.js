@@ -83,12 +83,16 @@ const Header = () => {
             </p>
           )}
           <button onClick={handleHome}>
-            <img className="mx-2 w-4 md:w-8" src={home} />
+            <img className="mx-2 w-4 md:w-8" src={home} title="Home" />
           </button>
 
           {!enableGptSearch && (
             <button onClick={handleGptSearch}>
-              <img className="mx-2 w-4 md:w-8" src={search} />
+              <img
+                className="mx-2 w-4 md:w-8"
+                src={search}
+                title="GPT-Search"
+              />
             </button>
           )}
 
