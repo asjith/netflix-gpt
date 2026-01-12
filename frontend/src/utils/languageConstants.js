@@ -1,14 +1,15 @@
 const language = {
   en: {
-    gptSearchPlaceholder: "What would you like to watch today?",
+    gptSearchPlaceholder: "Describe the kind of movie you want to watch…",
     search: "Search",
   },
   hindi: {
-    gptSearchPlaceholder: "आज आप क्या देखना चाहेंगे?",
+    gptSearchPlaceholder: "आप किस तरह की फ़िल्म देखना चाहते हैं, बताइए…",
     search: "खोज",
   },
   malayalam: {
-    gptSearchPlaceholder: "ഇന്ന് നിങ്ങൾ എന്താണ് കാണാൻ ആഗ്രഹിക്കുന്നത്?",
+    gptSearchPlaceholder:
+      "നിങ്ങൾ കാണാൻ ആഗ്രഹിക്കുന്ന സിനിമയുടെ തരമെന്നു വിവരണം നൽകൂ…",
     search: "തിരയുക",
   },
 };
