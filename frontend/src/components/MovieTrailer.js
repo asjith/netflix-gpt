@@ -18,11 +18,11 @@ const MovieTrailer = ({ movieId, handleClick }) => {
           src={
             "https://www.youtube.com/embed/" +
             movieTrailer?.key +
-            "?playlist=" +
+            "?&autoplay=1&playlist=" +
             movieTrailer?.key
           }
           title="YouTube video player"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
       )}
       {fetchError && (
