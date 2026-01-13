@@ -97,7 +97,6 @@ const Login = () => {
   return (
     <div className="relative h-screen">
       <Header />
-      <div className="absolute z-0 min-h-screen w-full bg-black"></div>
       {!isMobile && (
         <img
           className="absolute z-0 brightness-50 object-cover min-h-screen w-full"
@@ -133,6 +132,9 @@ const Login = () => {
           className="my-3 p-3 w-full bg-black border border-gray-600 rounded-md"
           ref={password}
         ></input>
+        {
+          !isSignIn && (<p className="p-3 w-full text-xs">* Password must be at least 8 characters and include uppercase, lowercase, and a number</p>)
+        }
         <p className="my-5 font-bold text-red-700">{errorMsg}</p>
         <button
           type="submit"
@@ -160,8 +162,8 @@ const Login = () => {
           onClick={handleIsSignInUp}
         >
           {isSignIn
-            ? "New to FilmFinder? Sign Up now"
-            : "Already registered? Sign In now"}
+            ? (<p>New to FilmFinder? <span className="font-bold">Sign Up now</span></p>)
+            : (<p>Already registered? <span className="font-bold">Sign In now</span></p> )}
         </button>
       </form>
     </div>
