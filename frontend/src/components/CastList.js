@@ -36,7 +36,7 @@ const CastList = ({ movieId }) => {
   return (
     <div className="p-4 mx-[1rem] sm:mx-[3rem]">
       <h2 className="text-2xl">Top Cast</h2>
-      <div className="grid grid-flow-col gap-2 overflow-x-scroll">
+      <div className="grid grid-flow-col gap-2 overflow-x-scroll justify-start">
         {castList.map((cast) => {
           return <CastCard key={cast.id} castDetails={cast} />;
         })}
