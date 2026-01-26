@@ -33,4 +33,32 @@ https://filmfinder-gpt.vercel.app
 
 ---
 
-<!-- ## 📸 Screenshots -->
+## 📸 Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### AI-Powered Search
+
+![AI Search](screenshots/search.png)
+
+### Movie Details & Trailer
+
+![Movie Details](screenshots/details.png)
+
+---
+
+## 🔮 Future Improvements
+
+- Add user watchlists and favorites
+- Improve AI recommendation accuracy with user history
+- Add infinite scrolling and advanced filtering
+
+---
+
+## 👤 Author
+
+Anusree S Jith  
+Frontend Engineer  
+LinkedIn: https://www.linkedin.com/in/anusreesjith
