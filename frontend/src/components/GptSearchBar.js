@@ -6,7 +6,7 @@ import useSearchMovies from "../hooks/useSearchMovies";
 import {
   addMovies,
   setNotFound,
-  toggleClickedSearchButton,
+  toggleClickedSearchButton
 } from "../utils/gptSearchSlice";
 
 const GptSearchBar = () => {
@@ -47,7 +47,7 @@ const GptSearchBar = () => {
           "4. If no person is mentioned, treat the query as a general movie search based on genre, language, theme, or time period." +
           "5. Always prefer recent and popular titles from the last few years unless the query explicitly mentions 'old', 'classic', or 'retro'." +
           "6. Never ask questions or seek clarification. Never include explanations or text outside the movie list." +
-          "7. The final output must be **only** a list of 5 movie titles separated by commas, e.g.:Aavesham, War, Dhoom, Falimy, Notebook, ...",
+          "7. The final output must be **only** a list of 5 movie titles separated by commas, e.g.:Aavesham, War, Dhoom, Falimy, Notebook, ..."
       });
 
       const gptMovieNames = response?.output_text?.split(", ");
@@ -81,7 +81,7 @@ const GptSearchBar = () => {
           dispatch(
             addMovies({
               movieNames: gptMovieNames,
-              movieResults: moviesResult,
+              movieResults: moviesResult
             })
           );
         } else {
@@ -95,8 +95,8 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="p-[2%] bg-black rounded-lg text-xs sm:text-sm ">
-      <form className="grid grid-cols-12 " onSubmit={(e) => e.preventDefault()}>
+    <div className="p-[2%] w-1/2 bg-black rounded-lg text-[0.5rem] sm:text-xs">
+      <form className="grid grid-cols-12" onSubmit={(e) => e.preventDefault()}>
         <input
           className="col-span-9 m-1 p-2 rounded-sm lg:col-span-10"
           placeholder={language?.[languageName]?.gptSearchPlaceholder}
@@ -105,7 +105,7 @@ const GptSearchBar = () => {
         />
         <button
           type="submit"
-          className="col-span-3 m-1 p-2 border border-red-700 bg-red-700 font-semibold text-white rounded-sm w-fit lg:col-span-2"
+          className="col-span-3 m-1 p-2 border border-red-700 bg-red-700 font-semibold text-white rounded-sm w-24 lg:col-span-2"
           onClick={handleGptSearchClick}
         >
           {language?.[languageName]?.search}
